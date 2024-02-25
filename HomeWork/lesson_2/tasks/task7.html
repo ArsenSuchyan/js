@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 7</title>
+  </head>
+  <body>
+    <h1>Задача 7</h1>
+    <p>
+      Знайти суму випадкового номера місяця (від 1 до 12) та випадкового номера
+      дня (від 0 до 6).
+    </p>
+    <script>
+      let minMonth = 1;
+      let maxMonth = 12;
+      let month =
+        minMonth + Math.floor(Math.random() * (maxMonth - minMonth + 1));
+      console.log(month);
+      let minDay = 0;
+      let maxDay = 6;
+      let day = minDay + Math.floor(Math.random() * (maxDay - minDay + 1));
+      console.log(day);
+      let message = "Дата: ";
+      switch (day) {
+        case 0:
+          message = message + "неділя ";
+          break;
+        case 1:
+          message = message + "понеділок ";
+          break;
+        case 2:
+          message = message + "вівторок ";
+          break;
+        case 3:
+          message = message + "середа ";
+          break;
+        case 4:
+          message = message + "четвер ";
+          break;
+        case 5:
+          message = message + "пятниця ";
+          break;
+        case 6:
+          message = message + "субота ";
+          break;
+      }
+      switch (month) {
+        case 1:
+          message = message + "січня";
+          break;
+
+        case 2:
+          message = message + "лютого";
+          break;
+
+        case 3:
+          message = message + "березня";
+          break;
+
+        case 4:
+          message = message + "квітня";
+          break;
+
+        case 5:
+          message = message + "травня";
+          break;
+
+        case 6:
+          message = message + "червня";
+          break;
+
+        case 7:
+          message = message + "липня";
+          break;
+
+        case 8:
+          message = message + "серпня";
+          break;
+
+        case 9:
+          message = message + "вересня";
+          break;
+
+        case 10:
+          message = message + "жовтня";
+          break;
+
+        case 11:
+          message = message + "листопада";
+          break;
+
+        case 12:
+          message = message + "грудня";
+          break;
+      }
+      document.write(`Випадковий номер дня: ${day}; `);
+      document.write(`Випадковий номер місяця: ${month} `);
+    </script>
+    <br />
+    <script>
+      document.write(message);
+    </script>
+  </body>
+</html>
