@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      З клавіатури вводиться вік людини. Вивести на екран ким він є (дитиною у
+      садочку, школярем, студентом, працівником, пенсіонером).
+    </p>
+    <script>
+      let age = parseInt(prompt("Введіть вік людини"));
+      if (age < 6) document.write("Це дитина з садочку");
+      else if (age > 5 && age < 18) document.write("Це школяр");
+      else if (age > 17 && age < 24) document.write("Це студент");
+      else if (age > 23 && age < 65) document.write("Це працівник");
+      else if (age > 64) document.write("Це пенсіонер");
+    </script>
+  </body>
+</html>
