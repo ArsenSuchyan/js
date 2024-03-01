@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 11</title>
+  </head>
+  <body>
+    <h1>Задача 11</h1>
+    <p>
+      Знайти суму 5 непарних чисел, що знаходяться між заданими користувачем
+      числами.
+    </p>
+    <script>
+      let firstNumber = parseInt(prompt("Введіть перше число"));
+      let secondNumber = parseInt(prompt("Введіть друге число"));
+      let sum = 0;
+      let count = 0;
+
+      if (firstNumber < secondNumber) {
+        for (let i = firstNumber + 1; i < secondNumber; i++) {
+          if (count < 5) {
+            if (i % 2 === 1) {
+              sum += i;
+              count++;
+              document.write(`${i} + `);
+            }
+          }
+        }
+      } else if (secondNumber < firstNumber) {
+        for (let i = secondNumber + 1; i < firstNumber; i++) {
+          if (count < 5) {
+            if (i % 2 === 1) {
+              sum += i;
+              count++;
+              document.write(`${i} + `);
+            }
+          }
+        }
+      }
+      document.write(`= ${sum}`);
+    </script>
+  </body>
+</html>

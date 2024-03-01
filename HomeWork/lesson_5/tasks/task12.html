@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 12</title>
+  </head>
+  <body>
+    <h1>Задача 12</h1>
+    <p>
+      Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. Вибір у
+      кожній позиції вибирається як одне з чотирьох зображень. Вивести ці
+      зображення і повідомити виграш користувача (три перших зображення 100 грн,
+      три других – 200, три третіх – 500, три четвертих зображення – 1000грн).
+      Використати цикли і switch (для вибору зображення за номером).
+    </p>
+    <script>
+      let apple =
+        '<img src="img/apple.webp" alt="apple" width=300px height=300px>';
+      let pear =
+        '<img src="img/pear.webp" alt="pear" width=300px height=300px>';
+      let lemon =
+        '<img src="img/lemon.webp" alt="lemon" width=300px height=300px>';
+      let orange =
+        '<img src="img/orange.webp" alt="orange" width=300px height=300px>';
+      let result = "";
+      for (i = 0; i < 3; i++) {
+        let randomNum = 1 + Math.floor(Math.random() * 4);
+        switch (randomNum) {
+          case 1:
+            document.write(apple);
+            result += "apple";
+            break;
+          case 2:
+            document.write(pear);
+            result += "pear";
+            break;
+          case 3:
+            document.write(lemon);
+            result += "lemon";
+            break;
+          case 4:
+            document.write(orange);
+            result += "orange";
+            break;
+        }
+      }
+      if (result === "appleappleapple") alert("Вітаємо! Ви виграли 100 грн!");
+      else if (result === "pearpearpear") alert("Вітаємо! Ви виграли 200 грн!");
+      else if (result === "lemonlemonlemon")
+        alert("Вітаємо! Ви виграли 500 грн!");
+      else if (result === "orangeorangorange")
+        alert("Вітаємо! Ви виграли 1000 грн!");
+    </script>
+  </body>
+</html>
