@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 13</title>
+  </head>
+  <body>
+    <h1>Задача 13</h1>
+    <p>
+      13. Морський бій. Комп’ютер випадково розташовує одиночний корабель на
+      полі розміром N*M. Маючи К снарядів користувач намагається потопити
+      корабель.
+    </p>
+    <script>
+      let N = 3;
+      let M = 3;
+      let randomShipPositionX;
+      switch (1 + Math.floor(Math.random() * N)) {
+        case 1:
+          randomShipPositionX = "a";
+          break;
+        case 2:
+          randomShipPositionX = "b";
+          break;
+        case 3:
+          randomShipPositionX = "c";
+          break;
+      }
+      let randomShipPositionY = 1 + Math.floor(Math.random() * M);
+      let K = 5;
+      alert(
+        `Зиграємо у морській бій! Комп'ютер у довільному порядку розмістить однопалубний корабель на полі розміром ${N} * ${M}. У вас є ${K} спроб влучити у ціль`
+      );
+      do {
+        let attackCoordinatesX = prompt(
+          `Оберіть місце вашого удару. У вас залишилось: ${K} снарядів. Оберіть вертикальну лінію (a, b, c)`
+        );
+        let attackCoordinatesY = parseInt(
+          prompt(
+            `Оберіть місце вашого удару. У вас залишилось: ${K} снарядів. Оберіть горизонтальну лінію (1, 2, 3)`
+          )
+        );
+        if (
+          attackCoordinatesX === randomShipPositionX &&
+          randomShipPositionY === attackCoordinatesY
+        ) {
+          K -= 1;
+          alert("Вітаємо! Ви влучили в ціль!");
+          document.write(
+            '<img src="img/sunken-ship.webp" alt="sunken-ship" height="300px" width="300px"/>'
+          );
+          break;
+        } else {
+          K -= 1;
+          if (K > 0)
+            alert(`Промах! Спробуйте ще раз. У вас залишилось: ${K} снарядів`);
+          else {
+            alert("На жаль, у вас закінчилися снаряди");
+            document.write(
+              '<img src="img/ship.webp" alt="ship" height="300px" width="300px"'
+            );
+          }
+        }
+      } while (K > 0);
+    </script>
+  </body>
+</html>
