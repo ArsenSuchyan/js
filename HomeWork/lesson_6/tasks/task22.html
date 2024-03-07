@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 22</title>
+  </head>
+  <body>
+    <h1>Задача 22</h1>
+    <p>
+      Є шматок тканини довжиною M метрів. Від нього послідовно відрізають шматки
+      різної довжини. Усі дані щодо використання тканини вводяться до
+      комп'ютера. Комп'ютер повинен вивести повідомлення про те, що матеріалу не
+      вистачає, якщо буде потрібен шматок тканини, довжина якого перевищує
+      довжину шматка, що залишився.
+    </p>
+    <script>
+      let M = 1000;
+      do {
+        let cutPieceLength = parseFloat(
+          prompt(
+            `Залишилося ${M} м тканини. Введіть довжину шматка який треба відрізати`
+          )
+        );
+        if (cutPieceLength <= M) {
+          document.write(`Відрізали ${cutPieceLength} м тканини <br>`);
+          M -= cutPieceLength;
+        } else alert("Матеріалу не вистачає");
+      } while (M !== 0);
+      document.write("Матеріал закінчився");
+    </script>
+  </body>
+</html>

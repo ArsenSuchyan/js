@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 11</title>
+  </head>
+  <body>
+    <h1>Задача 11</h1>
+    <p>
+      Комп’ютер загадує випадкове число від 1 до 10. Вгадати число шляхом
+      введеня можливих варіантів. В кінці вивести кількість спроб користувача.
+    </p>
+    <script>
+      let randomNumber = 1 + Math.floor(Math.random() * 10);
+      let attempts = 0;
+      let answer;
+      do {
+        attempts++;
+        answer = parseInt(prompt("Вгадайте число від 1 до 10"));
+        if (answer === randomNumber)
+          alert(`Вітаємо, ви вгадали ${randomNumber}!`);
+        else alert(`Не вгадали. Спробуйте ще раз`);
+      } while (answer !== randomNumber);
+      document.write(`Ви вгадали за ${attempts} спроб`);
+    </script>
+  </body>
+</html>
