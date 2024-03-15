@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 5</title>
+  </head>
+  <body>
+    <h1>Задача 5</h1>
+    <p>Дано послідовність оцінок учня. Підрахувати кількість:</p>
+    <ol>
+      <li>двійок</li>
+      <li>кількість хороших оцінок (добре, відмінно);</li>
+      <li>кількість оцінок, які нижче середнього.</li>
+    </ol>
+    <script>
+      function getNumberOf2Points(...studentMarks) {
+        let count = 0;
+        for (mark = 0; mark < studentMarks.length; mark++) {
+          if (studentMarks[mark] === 2) count++;
+        }
+        return count;
+      }
+      function getNumberOfGoodMarks(...studentMarks) {
+        let count = 0;
+        for (mark = 0; mark < studentMarks.length; mark++) {
+          if (studentMarks[mark] >= 4) count++;
+        }
+        return count;
+      }
+      function getNumberOfMarksLowerThanAverage(...studentMarks) {
+        let countOfLowerThanAverage = 0;
+        let sum = 0;
+        let count = 0;
+        for (mark = 0; mark < studentMarks.length; mark++) {
+          sum += studentMarks[mark];
+          count++;
+        }
+        let averageMark = sum / count;
+        console.log(averageMark);
+        for (mark = 0; mark < studentMarks.length; mark++) {
+          if (studentMarks[mark] < averageMark) countOfLowerThanAverage++;
+        }
+        return countOfLowerThanAverage;
+      }
+
+      let studentMarks = [5, 5, 2, 4, 3];
+      document.write(
+        `Кількість двійок: ${getNumberOf2Points(...studentMarks)} <br>`
+      );
+      document.write(
+        `Кількість хороших оцінок: ${getNumberOfGoodMarks(
+          ...studentMarks
+        )} <br>`
+      );
+      document.write(
+        `Кількість оцінок, які нижче середнього: ${getNumberOfMarksLowerThanAverage(
+          ...studentMarks
+        )} <br>`
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 8</title>
+  </head>
+  <body>
+    <h1>Задача 8</h1>
+    <p>
+      Дано одновимірний масив, у якому зберігається певна виграшна сума
+      (елементи заповнюються випадковим чином значеннями від -500 до 500).
+      Надаючи користувачу можливість вибирати номери елементів (поки він не
+      відмовиться). Знаходити сумарний виграш.
+    </p>
+    <script>
+      let winningAmounts = [];
+      let userFinalResult = 0;
+      for (amount = 0; amount < 100; amount++) {
+        let newSpot = -500 + Math.floor(Math.random() * (500 + 501));
+        winningAmounts.push(newSpot);
+      }
+      for (pick = 0; pick < 100; pick++) {
+        let userPick = parseInt(
+          prompt(
+            "Оберіть номер карточки від 1 до 100. Якщо бажаєте припинити натисніть 'Скасувати'"
+          )
+        );
+        console.log(userPick);
+        if (isNaN(userPick)) {
+          break;
+        } else userFinalResult += winningAmounts[userPick - 1];
+      }
+      document.write(`Ваш сумарний виграш склав ${userFinalResult} грн`);
+    </script>
+  </body>
+</html>

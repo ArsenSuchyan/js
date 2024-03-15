@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 7</title>
+  </head>
+  <body>
+    <h1>Задача 7</h1>
+    <p>
+      Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей
+      за:
+    </p>
+    <ol>
+      <li>за весь рік;</li>
+      <li>у першій половині року;</li>
+      <li>у другій половині року;</li>
+      <li>за літо;</li>
+      <li>за ІІ квартал;</li>
+      <li>за парні місяці (з парними номерами);</li>
+      <li>за місяці, які є початковими у сезоні (весна, літо, осінь, зима).</li>
+    </ol>
+    <script>
+      let totalAmountPerYear = 0;
+      let amountOfFirstPartOfYear = 0;
+      let amountOfSecondPartOfYear = 0;
+      let amountPerSummer = 0;
+      let amountPerSecondQuarter = 0;
+      let amountOfEvenMonths = 0;
+      let amountOfInitialMonth = 0;
+
+      let paymentsPerMonth = [
+        2500, 2450, 2000, 1800, 1600, 1200, 1250, 1200, 1300, 1500, 1900, 2200,
+      ];
+
+      for (month = 0; month < paymentsPerMonth.length; month++) {
+        if (month < 6) {
+          amountOfFirstPartOfYear += paymentsPerMonth[month];
+          totalAmountPerYear += paymentsPerMonth[month];
+        } else {
+          amountOfSecondPartOfYear += paymentsPerMonth[month];
+          totalAmountPerYear += paymentsPerMonth[month];
+        }
+        if (month >= 5 && month <= 7)
+          amountPerSummer += paymentsPerMonth[month];
+        if (month >= 3 && month <= 5)
+          amountPerSecondQuarter += paymentsPerMonth[month];
+        if ((month + 1) % 2 === 0)
+          amountOfEvenMonths += paymentsPerMonth[month];
+        if (month === 2 || month === 5 || month === 8 || month === 11)
+          amountOfInitialMonth += paymentsPerMonth[month];
+      }
+
+      document.write("Сумарна кількість грошей за: <br>");
+      document.write(`за весь рік: ${totalAmountPerYear} <br>`);
+      document.write(`у першій половині року: ${amountOfFirstPartOfYear} <br>`);
+      document.write(
+        `у другій половині року: ${amountOfSecondPartOfYear} <br>`
+      );
+      document.write(`за літо: ${amountPerSummer} <br>`);
+      document.write(`за ІІ квартал: ${amountPerSecondQuarter} <br>`);
+      document.write(`за парні місяці: ${amountOfEvenMonths} <br>`);
+      document.write(
+        `за місяці, які є початковими у сезоні: ${amountOfInitialMonth} <br>`
+      );
+    </script>
+  </body>
+</html>

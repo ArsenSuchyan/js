@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+  </head>
+  <body>
+    <h1>Задача 1</h1>
+    <p>
+      Дано масив, який містить оцінки з К предметів. Знайти середній бал і
+      з’ясувати до якої категорії він відноситься (відмінник, двійочник (має
+      хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча
+      би одна трійка)).
+    </p>
+    <script>
+      function getAverageMark(...marks) {
+        let count = 0;
+        let sum = 0;
+        for (mark = 0; mark < marks.length; mark++) {
+          count++;
+          sum += marks[mark];
+        }
+        return sum / count;
+      }
+      function getStudentsStatus(...marks) {
+        let minMark = 5;
+        let studentStatus;
+        for (mark = 0; mark < marks.length; mark++) {
+          if (marks[mark] < minMark) minMark = marks[mark];
+          if (marks[mark] <= 2) {
+            minMark = marks[mark];
+            break;
+          }
+        }
+        switch (minMark) {
+          case 5:
+            studentStatus = "Відмінник";
+            break;
+          case 4:
+            studentStatus = "Хорошист";
+            break;
+          case 3:
+            studentStatus = "Трійочник";
+            break;
+          case 2:
+          case 1:
+          case 0:
+            studentStatus = "Двійочник";
+            break;
+        }
+        return studentStatus;
+      }
+      let marks = [4, 3, 5];
+      document.write(
+        `Середній бал студента = ${getAverageMark(...marks).toFixed(
+          1
+        )}<br> Студент в нас ${getStudentsStatus(...marks)}`
+      );
+    </script>
+  </body>
+</html>
