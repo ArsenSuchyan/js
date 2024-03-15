@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 8</title>
+  </head>
+  <body>
+    <h1>Задача 8</h1>
+    <p>
+      Створити функцію, яка виводить банер (у функцію передаються: зображення,
+      заголовок та посилання, куди переходимо при кліку на зображення (тег img
+      повине знаходитись у середині тега a: a img src=”шлях” /a
+    </p>
+
+    <script>
+      function createBanner(img, h1, a) {
+        document.write(
+          `<h1>${h1}</h1><a href="${a}" target="_blank"><img src="${img}"></a>`
+        );
+      }
+      let h1 = "Яблука";
+      let img = "img/img3.webp";
+      let a =
+        "https://fozzyshop.ua/kremenchuk/frukty-i-yagody/11805-yabloki-ukrainskie-2732479.html?enter=%D0%A2%D0%B0%D0%BA";
+      createBanner(img, h1, a);
+    </script>
+  </body>
+</html>

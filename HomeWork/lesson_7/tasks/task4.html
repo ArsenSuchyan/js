@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька
+      результатів: кількість парних, кількість додатних, кількість більших за
+      100.
+    </p>
+    <script>
+      function calculate() {
+        let num1 = parseFloat(prompt("Введіть перше число"));
+        let num2 = parseFloat(prompt("Введіть друге число"));
+        let num3 = parseFloat(prompt("Введіть третє число"));
+        let quantityOfEven = isEven(num1) + isEven(num2) + isEven(num3);
+        let quantityOfPositive =
+          isPositive(num1) + isPositive(num2) + isPositive(num3);
+        let quantityOfMoreThan100 =
+          isMoreThan100(num1) + isMoreThan100(num2) + isMoreThan100(num3);
+        let result = `кількість парних: ${quantityOfEven} <br> кількість додатних: ${quantityOfPositive} <br> кількість більших за 100: ${quantityOfMoreThan100}`;
+        return result;
+      }
+      function isEven(num) {
+        let result;
+        if (num % 2 === 0) result = 1;
+        else result = 0;
+        return result;
+      }
+      function isPositive(num) {
+        let result;
+        if (num > 0) result = 1;
+        else result = 0;
+        return result;
+      }
+      function isMoreThan100(num) {
+        let result;
+        if (num > 100) result = 1;
+        else result = 0;
+        return result;
+      }
+      document.write(calculate());
+    </script>
+  </body>
+</html>
