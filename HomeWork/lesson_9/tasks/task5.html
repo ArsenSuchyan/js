@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 5</title>
+  </head>
+  <body>
+    <h1>Задача 5</h1>
+    <p>Дано масив елементів. Знайти добуток додатних елементів</p>
+    <script>
+      let numbersArray = [-7, 3, -2, 6, 9, -4, 1, -8, 5, -10];
+      let product = 0;
+      for (let number of numbersArray) {
+        if (number > 0 && product === 0) product += number;
+        else if (number > 0) product = product * number;
+      }
+      document.write(`добуток додатних елементів = ${product}`);
+    </script>
+  </body>
+</html>
