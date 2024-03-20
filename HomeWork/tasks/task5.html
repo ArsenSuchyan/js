@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 5</title>
+  </head>
+  <body>
+    <h1>Задача 5</h1>
+    <p>
+      Дано історію цін на цінні папери за деякий період (згенерувати від 1 до
+      10000) Підрахувати кількість змін цін
+    </p>
+    <script>
+      let historyOfPrice = [3200, 8100, 500, 4300, 200, 5050, 999, 999, 5550];
+
+      let changeCount = historyOfPrice.reduce(
+        (count, price, index, array) =>
+          index === 0 || price === array[index - 1] ? count : count + 1,
+        0
+      );
+      document.write(`Кількість змін цін = ${changeCount}`);
+    </script>
+  </body>
+</html>

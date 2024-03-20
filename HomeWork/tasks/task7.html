@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 7</title>
+  </head>
+  <body>
+    <h1>Задача 7</h1>
+    <p>
+      Дано історію цін на цінні папери за деякий період (згенерувати від 1 до
+      10000) Визначати, чи усі ціни більше за 1000
+    </p>
+    <script>
+      let historyOfPrice = [3200, 8100, 500, 4300, 200, 5050, 999, 1980, 5550];
+
+      let isEveryoneMoreThen1000 = historyOfPrice.every(
+        (price) => price > 1000
+      );
+
+      document.write(
+        isEveryoneMoreThen1000
+          ? "Так, всі ціни є вищими за 1000 грн"
+          : "Ні, є ціни менше ніж 1000 грн"
+      );
+    </script>
+  </body>
+</html>
