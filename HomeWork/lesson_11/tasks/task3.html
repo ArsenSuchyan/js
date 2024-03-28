@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+  </head>
+  <body>
+    <h1>Задача 3</h1>
+    <p>
+      Морський бій. Випадковим чином на двовимірному полі розміром 6*6
+      розташовується 5 кораблів. Користувач стріляє вказуючи координати. Гра
+      продовжується поки не потоплено усі кораблі або у користувача не
+      закінчаться снаряди.
+    </p>
+
+    <script>
+      // let battleGround = new Array(6);
+      // battleGround.fill([0, 0, 0, 0, 0, 0]);
+
+      // battleGround.forEach((element) => {
+      //   document.write(`${element} <br>`);
+      // });
+
+      let battleGround = [
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0]
+      ];
+
+      function createBattleGround(battleGround, numberOfShips) {
+        for (let row = 0; row < battleGround.length; row++) {
+          if (row % 2 === 0) {
+            for (let cell = 0; cell < battleGround[row].length; cell++) {
+              if (Math.floor(Math.random() * 2) === 1 && numberOfShips > 0) {
+                battleGround[row][cell] = 1;
+                numberOfShips--;
+                break;
+              }
+            }
+          } else if (row % 2 === 1) {
+            for (let cell = 5; cell >= 0; cell--) {
+              if (Math.floor(Math.random() * 2) === 1 && numberOfShips > 0) {
+                battleGround[row][cell] = 1;
+                numberOfShips--;
+                break;
+              }
+            }
+          }
+        }
+        return battleGround;
+      }
+
+      createBattleGround(battleGround, 5);
+      battleGround.forEach((element) => {
+        document.write(`${element} <br>`);
+      });
+
+      let availableShots = 10;
+      let remainingShips = 5;
+      mark: do {
+        let coordinateY = parseInt(
+          prompt("Введіть номер рядку для удару. (Від 0 до 5)")
+        );
+        let coordinateX = parseInt(
+          prompt("Введіть номер стовпцю для удару. (Від 0 до 5)")
+        );
+
+        if (battleGround[coordinateY][coordinateX] === 1) {
+          availableShots--;
+          remainingShips--;
+          alert(
+            `Влучив! Залишилося ще ${remainingShips} кораблів та ${availableShots} снарядів.`
+          );
+          if (remainingShips === 0) {
+            document.write(`Перемога! Ти потопив усі кораблі!`);
+            break mark;
+          }
+        } else {
+          availableShots--;
+          alert(
+            `Не влучив! Залишилося ще ${remainingShips} кораблів та ${availableShots} снарядів.`
+          );
+        }
+      } while (availableShots > 0);
+      if (availableShots === 0) document.write(`Поразка. Закінчилися снаряди.`);
+    </script>
+  </body>
+</html>

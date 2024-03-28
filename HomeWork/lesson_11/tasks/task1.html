@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+  </head>
+  <body>
+    <h1>Задача 1</h1>
+    <p>Знайти суми елементів у вказаній області:</p>
+    <ol>
+      <li>номери рядків від 0 до половини, стовпці від 0 до половини</li>
+      <li>номери рядків від 0 до половини, стовпці від половини до кінця</li>
+      <li>номери рядків від половини до кінця, стовпці від 0 до половини</li>
+      <li>
+        номери рядків від половини до кінця , стовпці від половини до кінця
+      </li>
+      <li>Суму парних рядків</li>
+      <li>Суму непарних стовпців</li>
+      <li>У парних рядках – непарні стовпці, у непарних – парні.</li>
+    </ol>
+    <script>
+      let someArray = [
+        [74, 39, 52, 65],
+        [48, 22, 95, 9],
+        [67, 80, 3, 50],
+        [45, 33, 74, 30]
+      ];
+      someArray.forEach((element) => {
+        document.write(`${element} <br>`);
+      });
+      let sum1 = 0;
+      for (let row = 0; row < someArray.length / 2; row++) {
+        for (let column = 0; column < someArray[row].length / 2; column++) {
+          sum1 += someArray[row][column];
+        }
+      }
+      document.write(`1. Сума елементів у номерах рядків від 0 до половини,
+      стовпці від 0 до половини = ${sum1} <br> <br>`);
+
+      let sum2 = 0;
+      for (let row = 0; row < someArray.length / 2; row++) {
+        for (
+          let column = someArray[row].length / 2;
+          column < someArray[row].length;
+          column++
+        ) {
+          sum2 += someArray[row][column];
+        }
+      }
+      document.write(
+        `2. Сума елементів у номерах рядків від 0 до половини, стовпці від половини до кінця = ${sum2} <br> <br>`
+      );
+
+      let sum3 = 0;
+      for (let row = someArray.length / 2; row < someArray.length; row++) {
+        for (let column = 0; column < someArray[row].length / 2; column++) {
+          sum3 += someArray[row][column];
+        }
+      }
+      document.write(
+        `3. Сума елементів у номерах рядків від половини до кінця, стовпці від 0 до половини = ${sum3} <br> <br>`
+      );
+
+      let sum4 = 0;
+      for (let row = someArray.length / 2; row < someArray.length; row++) {
+        for (
+          let column = someArray[row].length / 2;
+          column < someArray[row].length;
+          column++
+        ) {
+          sum4 += someArray[row][column];
+        }
+      }
+      document.write(
+        `4. Сума елементів у номерах рядків від половини до кінця , стовпці від половини до кінця = ${sum4} <br> <br>`
+      );
+
+      let sum5 = 0;
+      for (let row = 1; row < someArray.length; row += 2) {
+        for (let column = 0; column < someArray[row].length; column++) {
+          sum5 += someArray[row][column];
+        }
+      }
+      document.write(`5. Сума парних рядків = ${sum5} <br> <br>`);
+
+      let sum6 = 0;
+      for (let row = 0; row < someArray.length; row++) {
+        for (let column = 0; column < someArray[row].length; column += 2) {
+          sum6 += someArray[row][column];
+        }
+      }
+      document.write(`6. Сума непарних стовпців = ${sum6} <br> <br>`);
+
+      let sum7 = 0;
+      for (let row = 0; row < someArray.length; row++) {
+        for (let column = 0; column < someArray[row].length; column++) {
+          if (
+            (row % 2 === 0 && column % 2 !== 0) ||
+            (row % 2 !== 0 && column % 2 === 0)
+          )
+            sum7 += someArray[row][column];
+        }
+      }
+      document.write(
+        `7. У парних рядках – непарні стовпці, у непарних – парні = ${sum7} <br> <br>`
+      );
+    </script>
+  </body>
+</html>
