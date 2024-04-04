@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      Для розглянутих методів сортування спробувати вивести етапи сортування
+      шляхом виведення відповідних таблиць за зразком .
+    </p>
+
+    <script>
+      function bubbleSorting(someArray) {
+        let changed;
+        do {
+          changed = false;
+          for (i = 1; i < someArray.length; i++) {
+            if (someArray[i] < someArray[i - 1]) {
+              let temporary = someArray[i - 1];
+              someArray[i - 1] = someArray[i];
+              someArray[i] = temporary;
+              changed = true;
+
+              document.write(`${someArray} <br>`);
+            }
+          }
+        } while (changed);
+      }
+
+      function cocktailSorting(someArray) {
+        let leftIndex = 0;
+        let rightIndex = someArray.length - 1;
+
+        while (leftIndex < rightIndex) {
+          for (let i = leftIndex; i < rightIndex; i++) {
+            if (someArray[i] > someArray[i + 1]) {
+              let temporary = someArray[i + 1];
+              someArray[i + 1] = someArray[i];
+              someArray[i] = temporary;
+
+              document.write(`${someArray} <br>`);
+            }
+          }
+          rightIndex--;
+          for (let i = rightIndex; i > leftIndex; i--) {
+            if (someArray[i] < someArray[i - 1]) {
+              let temporary = someArray[i - 1];
+              someArray[i - 1] = someArray[i];
+              someArray[i] = temporary;
+
+              document.write(`${someArray} <br>`);
+            }
+          }
+          leftIndex++;
+        }
+      }
+
+      function insertSorting(someArray) {
+        for (let k = 1; k < someArray.length; k++) {
+          let currentElement = someArray[k];
+          let i = k - 1;
+          while (i >= 0 && someArray[i] > currentElement) {
+            someArray[i + 1] = someArray[i];
+            i--;
+            document.write(`${someArray} <br>`);
+          }
+          someArray[i + 1] = currentElement;
+          document.write(`${someArray} <br>`);
+        }
+      }
+
+      let someArray = [56, 24, 13, 87, 39];
+      let someArray2 = [56, 24, 13, 87, 39];
+      let someArray3 = [56, 24, 13, 87, 39];
+
+      document.write("Сортування бульбашкою <br>");
+      bubbleSorting(someArray);
+
+      document.write("Сортування змішуванням <br>");
+      cocktailSorting(someArray2);
+
+      document.write("Сортування включеннями <br>");
+      insertSorting(someArray3);
+    </script>
+  </body>
+</html>

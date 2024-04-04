@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+  </head>
+  <body>
+    <h1>Задача 1</h1>
+    <p>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та
+      порівнянь чисел під час сортування бульбашкою
+    </p>
+
+    <script>
+      let someArray = [
+        56, 24, 13, 87, 39, 76, 93, 6, 65, 20, 5, 79, 63, 68, 99, 64, 57, 82,
+        80, 4, 42, 36, 27, 69, 43, 95, 12, 67, 41, 52
+      ];
+
+      function bubbleSorting(someArray) {
+        let changes = 0;
+        let comparisons = 0;
+        let changed;
+        do {
+          changed = false;
+          for (i = 1; i < someArray.length; i++) {
+            comparisons++;
+            if (someArray[i] < someArray[i - 1]) {
+              let temporary = someArray[i - 1];
+              someArray[i - 1] = someArray[i];
+              someArray[i] = temporary;
+              changed = true;
+              changes++;
+            }
+          }
+        } while (changed);
+        document.write(`Порівнянь = ${comparisons} <br>`);
+        document.write(`Обмінів = ${changes} <br>`);
+        return someArray;
+      }
+      document.write(bubbleSorting(someArray));
+    </script>
+  </body>
+</html>

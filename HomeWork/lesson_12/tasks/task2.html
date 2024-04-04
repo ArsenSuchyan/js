@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 2</title>
+  </head>
+  <body>
+    <h1>Задача 2</h1>
+    <p>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та
+      порівнянь чисел під час сортування змішуванням.
+    </p>
+
+    <script>
+      let someArray = [
+        56, 24, 13, 87, 39, 76, 93, 6, 65, 20, 5, 79, 63, 68, 99, 64, 57, 82,
+        80, 4, 42, 36, 27, 69, 43, 95, 12, 67, 41, 52
+      ];
+
+      function cocktailSorting(someArray) {
+        let changes = 0;
+        let comparisons = 0;
+
+        let leftIndex = 0;
+        let rightIndex = someArray.length - 1;
+
+        while (leftIndex < rightIndex) {
+          for (let i = leftIndex; i < rightIndex; i++) {
+            comparisons++;
+            if (someArray[i] > someArray[i + 1]) {
+              let temporary = someArray[i + 1];
+              someArray[i + 1] = someArray[i];
+              someArray[i] = temporary;
+              changes++;
+            }
+          }
+          rightIndex--;
+          for (let i = rightIndex; i > leftIndex; i--) {
+            comparisons++;
+            if (someArray[i] < someArray[i - 1]) {
+              let temporary = someArray[i - 1];
+              someArray[i - 1] = someArray[i];
+              someArray[i] = temporary;
+              changes++;
+            }
+          }
+          leftIndex++;
+        }
+
+        document.write(`Порівнянь = ${comparisons} <br>`);
+        document.write(`Обмінів = ${changes} <br>`);
+        return someArray;
+      }
+      document.write(cocktailSorting(someArray));
+    </script>
+  </body>
+</html>

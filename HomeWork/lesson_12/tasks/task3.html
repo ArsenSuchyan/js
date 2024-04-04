@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+  </head>
+  <body>
+    <h1>Задача 3</h1>
+    <p>
+      Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та
+      порівнянь чисел під час сортування включеннями.
+    </p>
+
+    <script>
+      let someArray = [
+        56, 24, 13, 87, 39, 76, 93, 6, 65, 20, 5, 79, 63, 68, 99, 64, 57, 82,
+        80, 4, 42, 36, 27, 69, 43, 95, 12, 67, 41, 52
+      ];
+
+      function insertSorting(someArray) {
+        let changes = 0;
+        let comparisons = 0;
+
+        for (let k = 1; k < someArray.length; k++) {
+          let currentElement = someArray[k];
+          let i = k - 1;
+          while (i >= 0 && someArray[i] > currentElement) {
+            comparisons++;
+            someArray[i + 1] = someArray[i];
+            i--;
+            changes++;
+          }
+          someArray[i + 1] = currentElement;
+          changes++;
+        }
+
+        document.write(`Порівнянь = ${comparisons} <br>`);
+        document.write(`Обмінів = ${changes} <br>`);
+        return someArray;
+      }
+      document.write(insertSorting(someArray));
+    </script>
+  </body>
+</html>
