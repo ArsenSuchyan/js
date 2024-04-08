@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 6</title>
+  </head>
+  <body>
+    <h1>Задача 6</h1>
+    <p>
+      З використанням замикань розробити ітератор, тобто функцію, що буде
+      поступово за окремими викликами видавати по одну букву наперед заданого
+      слова. З використанням нього розробити гру «Прекладач». Виводимо для
+      користувача опис цього слова і по одну букву користувач вводить переклад
+      цього слова. Підрахувати кількість вгаданих букв.
+    </p>
+
+    <script>
+      function wordTyper(word) {
+        startLetter = 0;
+        function typeLetter() {
+          result = word[startLetter];
+          startLetter++;
+          return result;
+        }
+        return typeLetter;
+      }
+
+      function guessTheWord(question, answer) {
+        let correctAnswer = wordTyper(answer);
+        let correctLetters = 0;
+        for (i = 0; i < answer.length; i++) {
+          let guessedLetter = prompt(`${question} 
+Введіть ${i + 1} літеру`);
+          let correctLetter = correctAnswer();
+          if (guessedLetter === correctLetter) correctLetters++;
+        }
+
+        document.write(
+          `Правильна відповідь ${answer}. Ви вгадали літер = ${correctLetters} , неправильно введено =  ${
+            answer.length - correctLetters
+          }`
+        );
+      }
+
+      guessTheWord(
+        "Введіть назву столиці України латинськими літерами",
+        "kyiv"
+      );
+    </script>
+  </body>
+</html>

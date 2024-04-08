@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 7</title>
+  </head>
+  <body>
+    <h1>Задача 7</h1>
+    <p>
+      Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад
+      з додавання двох цифр і робиться перевірка.
+    </p>
+
+    <script>
+      function additionTest() {
+        let firstNumber = 1 + Math.floor(Math.random() * 50);
+        let secondNumber = 1 + Math.floor(Math.random() * 50);
+        let userAnswer = parseInt(
+          prompt(`Введіть суму виразу: ${firstNumber} + ${secondNumber}`)
+        );
+        if (userAnswer === firstNumber + secondNumber) {
+          alert("Правильна відповідь!");
+          document.write(`Правильна відповідь! <br>`);
+        } else {
+          alert("Неправильна відповідь");
+          document.write(`Неправильна відповідь <br>`);
+        }
+      }
+
+      additionTest();
+      let additionChallenge = setInterval(additionTest, 10000);
+    </script>
+  </body>
+</html>

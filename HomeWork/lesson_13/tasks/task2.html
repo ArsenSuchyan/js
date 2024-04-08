@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 2</title>
+  </head>
+  <body>
+    <h1>Задача 2</h1>
+    <p>
+      Дано масив імен спортсменів. Розробити програму для виведення усіх
+      можливих результатів змагань (списки імен у відповідності до місць, які
+      вони займуть).
+    </p>
+
+    <script>
+      let combinationsArray = [];
+      function combinationGenerator(arr, variation) {
+        if (arr.length === 0) combinationsArray.push(variation);
+        else {
+          for (let i = 0; i < arr.length; i++)
+            combinationGenerator(
+              arr.filter((el, ind) => ind !== i),
+              [...variation, arr[i]]
+            );
+        }
+        return combinationsArray;
+      }
+
+      let sportsmenList = ["Шевченко", "Малиновський", "Бойко"];
+
+      let championList = combinationGenerator(sportsmenList, []);
+
+      championList.forEach((el, ind) => {
+        el.forEach((el, ind) => {
+          document.write(`${ind + 1} місце: ${el} <br>`);
+        });
+        document.write("<br>");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      Дано масив хлопців і дівчат вивести всі можливі комбінації для танців з
+      хлопців і дівчат.
+    </p>
+
+    <script>
+      let boys = ["Антон", "Андрій", "Володимир"];
+      let girls = ["Аліна", "Анастасія", "Катерина"];
+
+      let combinationsArray = [];
+      function makePairs(boys, girls, variation) {
+        if (boys.length === 0) combinationsArray.push(variation);
+        else {
+          for (let m = 0; m < boys.length; m++) {
+            let f = 0;
+            makePairs(
+              boys.filter((el, ind) => ind !== m),
+              girls.filter((el, ind) => ind !== f),
+              [...variation, `${boys[m]} + ${girls[f]}`]
+            );
+            f++;
+          }
+        }
+
+        return combinationsArray;
+      }
+      let pairsCombinations = makePairs(boys, girls, []);
+
+      pairsCombinations.forEach((el, ind) => {
+        el.forEach((el, ind) => {
+          document.write(`${el} <br>`);
+        });
+        document.write("<br>");
+      });
+
+      // for (let m = 0; m < boys.length; m++) {
+      //     console.log([boys[m]], girls[f]);
+
+      // }
+    </script>
+  </body>
+</html>
