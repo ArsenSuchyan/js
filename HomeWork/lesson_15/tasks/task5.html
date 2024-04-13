@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 5</title>
+  </head>
+  <body>
+    <h1>Задача 5</h1>
+    <p>Розробити клас «Керівник танців»</p>
+
+    <script>
+      class DanceManager {
+        constructor(boys, girls) {
+          this.boys = boys;
+          this.girls = girls;
+        }
+        pickRandomBoy() {
+          let randomBoy = 1 + Math.floor(Math.random() * this.boys.length);
+          return this.boys[randomBoy - 1];
+        }
+        pickRandomGirl() {
+          let randomGirl = 1 + Math.floor(Math.random() * this.girls.length);
+          return this.girls[randomGirl - 1];
+        }
+        showDancingPare() {
+          let boy = this.pickRandomBoy();
+          let girl = this.pickRandomGirl();
+          document.write(`${boy} танцює з ${girl} <br>`);
+        }
+        run() {
+          setInterval(() => {
+            this.showDancingPare();
+          }, 5000);
+        }
+      }
+
+      let boys = ["Антон", "Андрій", "Володимир", "Євген", "Валентин"];
+      let girls = ["Аліна", "Анастасія", "Катерина", "Олена", "Вікторія"];
+      let pareMaker = new DanceManager(boys, girls);
+
+      pareMaker.run();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 2</title>
+  </head>
+  <body>
+    <h1>Задача 2</h1>
+    <p>Створити об’єкт «Авто».</p>
+
+    <script>
+      let auto = {
+        brand: "Volkswagen",
+        tankSize: 80,
+        tankFullness: 50,
+        seatsNumber: 30,
+        passengersNumber: 25,
+        refill: function (refillVolume) {
+          this.tankFullness += refillVolume;
+          if (this.tankFullness > this.tankSize) tankFullness = this.tankSize;
+        },
+        showPassengersNumber: function () {
+          document.write(
+            `Поточна кількість пасажирів: ${this.passengersNumber} <br>`
+          );
+        },
+        passengersDisembarkation: function (disembarkationNumber) {
+          this.passengersNumber -= disembarkationNumber;
+        },
+        passengersBoarding: function (boardingNumber) {
+          this.passengersNumber += boardingNumber;
+          if (this.passengersNumber > this.seatsNumber)
+            this.passengersNumber = this.seatsNumber;
+        }
+      };
+
+      auto.passengersDisembarkation(20);
+      auto.passengersBoarding(15);
+      auto.showPassengersNumber();
+    </script>
+  </body>
+</html>

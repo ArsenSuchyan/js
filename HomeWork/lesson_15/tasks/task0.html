@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 0</title>
+  </head>
+  <body>
+    <h1>Задача 0</h1>
+    <p>
+      Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з
+      них є функція знаходження суми, а у іншому – функція для знаходження
+      добутку тих, які знаходяться між заданими мінімальним і максимальних
+      значенням. Використати обидва методи стосовно обидвох об’єктів
+      (використати call, apply)
+    </p>
+
+    <script>
+      let obj1 = {
+        key1: 6,
+        key2: [5, 3, 7],
+        key3: 28,
+        getArraySum: function () {
+          return this.key2.reduce((prevVal, el) => prevVal + el, 0);
+        }
+      };
+
+      let obj2 = {
+        key1: 1,
+        key2: [10, 8, 15, 33],
+        key3: 5,
+        getProductInGap: function (min, max) {
+          return this.key2.reduce(
+            (prevVal, el) => (el > min && el < max ? prevVal * el : prevVal),
+            1
+          );
+        }
+      };
+
+      document.write(
+        `Результат формули для знаходження суми для об'єкту 1 : ${obj1.getArraySum()} <br>`
+      );
+
+      document.write(
+        `Результат формули для знаходження суми для об'єкту 2 : ${obj1.getArraySum.call(
+          obj2
+        )} <br>`
+      );
+
+      document.write(
+        `Результат формули для знаходження добутку між мінімальним та максимальним значеннями для об'єкту 1 : ${obj2.getProductInGap.apply(
+          obj1,
+          [1, 10]
+        )}
+         <br>`
+      );
+
+      document.write(
+        `Результат формули для знаходження добутку між мінімальним та максимальним значеннями для об'єкту 2 : ${obj2.getProductInGap(
+          5,
+          12
+        )}
+         <br>`
+      );
+    </script>
+  </body>
+</html>

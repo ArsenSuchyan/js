@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+  </head>
+  <body>
+    <h1>Задача 3</h1>
+    <p>Розробити клас MultChecker для перевірки таблиці множення</p>
+
+    <script>
+      class MultChecker {
+        constructor(multiplyNumber, correctAnswersNumber, wrongAnswersNumber) {
+          this.multiplyNumber = multiplyNumber;
+          this.correctAnswersNumber = correctAnswersNumber;
+          this.wrongAnswersNumber = wrongAnswersNumber;
+        }
+        exampleGeneration() {
+          let arr = [];
+          let randomNumber = 1 + Math.floor(Math.random() * 9);
+          arr.push(randomNumber);
+          let answer = parseInt(
+            prompt(`${this.multiplyNumber} * ${randomNumber} = ?`)
+          );
+          arr.push(answer);
+          return arr;
+        }
+        answerCheck() {
+          let arr = this.exampleGeneration();
+          if (arr[1] === this.multiplyNumber * arr[0])
+            this.correctAnswersNumber++;
+          else this.wrongAnswersNumber++;
+        }
+        render() {
+          document.write(
+            `Правильних відповідей: ${this.correctAnswersNumber} <br> Неправильних відповідей: ${this.wrongAnswersNumber} <br>`
+          );
+        }
+      }
+
+      let multiplicationFor7 = new MultChecker(7, 0, 0);
+
+      for (let i = 0; i < 5; i++) {
+        multiplicationFor7.answerCheck();
+      }
+
+      multiplicationFor7.render();
+    </script>
+  </body>
+</html>
