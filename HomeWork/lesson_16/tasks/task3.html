@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+  </head>
+  <body>
+    <h1>Задача 3</h1>
+    <p>Об’єкт “Фірма” (використати члени-класи)</p>
+    <h2>поля</h2>
+    <ul>
+      <li>назва фірми;</li>
+      <li>дата заснування (рік, місяць);</li>
+      <li>послуги (назва послуги, вартість, термін виконання);</li>
+      <li>адреси філіалів (країна, місто, вулиця, номер будинку);</li>
+    </ul>
+    <h2>методи</h2>
+    <ul>
+      <li>визначення кількості років існування фірми;</li>
+      <li>виведення всіх філіалів фірми у вказаному місті;</li>
+      <li>
+        виведення на екран послуг, що можуть бути виконані за вказану суму
+        грошей та вказаний термін часу;
+      </li>
+    </ul>
+
+    <script>
+      class Company {
+        constructor(
+          companyName,
+          dateOfEstablishment,
+          services,
+          branchAddresses
+        ) {
+          this.companyName = companyName;
+          this.dateOfEstablishment = dateOfEstablishment;
+          this.services = services;
+          this.branchAddresses = branchAddresses;
+        }
+
+        getCompanysAge() {
+          if (this.dateOfEstablishment.month <= 4)
+            return `${2024 - this.dateOfEstablishment.year} років`;
+          else return `${2024 - this.dateOfEstablishment.year - 1} років`;
+        }
+
+        getBranchesInCity(city) {
+          let result = this.branchAddresses.reduce(
+            (prevArr, el) => (el.city === city ? [...prevArr, el] : prevArr),
+            []
+          );
+          result.forEach((el) => {
+            document.write(
+              `${el.country}, ${el.city}, ${el.street}, ${el.buildingNumber} <br>`
+            );
+          });
+        }
+
+        whatIsAvailable(availableMoney, availableTime) {
+          let result = this.services.reduce(
+            (prevArr, el) =>
+              el.price <= availableMoney &&
+              parseFloat(el.duration) <= availableTime
+                ? [...prevArr, el]
+                : prevArr,
+            []
+          );
+          result.forEach((el) => {
+            document.write(`${el.serviceName} <br>`);
+          });
+        }
+
+        toString() {
+          return this.companyName;
+        }
+      }
+
+      let dateOfEstablishment1 = {
+        year: 2005,
+        month: 10
+      };
+
+      let services1 = [
+        {
+          serviceName: "закладення фундаменту",
+          price: 20000,
+          duration: "10 днів"
+        },
+        {
+          serviceName: "зведення стін",
+          price: 19000,
+          duration: "15 днів"
+        },
+        {
+          serviceName: "внутрішній ремонт",
+          price: 25000,
+          duration: "12 днів"
+        }
+      ];
+
+      let branchAddresses1 = [
+        {
+          country: "Україна",
+          city: "Київ",
+          street: "Михайлівська",
+          buildingNumber: 11
+        },
+        {
+          country: "Польща",
+          city: "Краків",
+          street: "Kopernika",
+          buildingNumber: 8
+        },
+        {
+          country: "Чехія",
+          city: "Брно",
+          street: "Slonska",
+          buildingNumber: 5
+        }
+      ];
+
+      let company1 = new Company(
+        "SmartBuild",
+        dateOfEstablishment1,
+        services1,
+        branchAddresses1
+      );
+      company1.getBranchesInCity("Київ");
+      company1.whatIsAvailable(25000, 10);
+      document.write(company1.getCompanysAge());
+      document.write("<br>");
+      document.write(company1);
+    </script>
+  </body>
+</html>

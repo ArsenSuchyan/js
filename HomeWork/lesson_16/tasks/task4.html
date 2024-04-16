@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      Створити клас TBankomat, який моделює роботу банкомата. Клас повинен
+      містити поля для зберігання кількості купюр кожного із номіналів від 5 до
+      200 гривень. Реалізувати методи знаходження максимальної та мінімальної
+      сум, які може видати банкомат, та метод зняття деякої суми.
+    </p>
+
+    <script>
+      class TBankomat {
+        #quantityOf5GrnBanknotes;
+        get QuantityOf5GrnBanknotes() {
+          return this.#quantityOf5GrnBanknotes;
+        }
+        set QuantityOf5GrnBanknotes(val) {
+          if (val < 0) throw new Error("Значення не може бути відємним");
+          this.#quantityOf5GrnBanknotes = val;
+        }
+        #quantityOf10GrnBanknotes;
+        get QuantityOf10GrnBanknotes() {
+          return this.#quantityOf10GrnBanknotes;
+        }
+        set QuantityOf10GrnBanknotes(val) {
+          if (val < 0) throw new Error("Значення не може бути відємним");
+          this.#quantityOf10GrnBanknotes = val;
+        }
+        #quantityOf20GrnBanknotes;
+        get QuantityOf20GrnBanknotes() {
+          return this.#quantityOf20GrnBanknotes;
+        }
+        set QuantityOf20GrnBanknotes(val) {
+          if (val < 0) throw new Error("Значення не може бути відємним");
+          this.#quantityOf20GrnBanknotes = val;
+        }
+        #quantityOf50GrnBanknotes;
+        get QuantityOf50GrnBanknotes() {
+          return this.#quantityOf50GrnBanknotes;
+        }
+        set QuantityOf50GrnBanknotes(val) {
+          if (val < 0) throw new Error("Значення не може бути відємним");
+          this.#quantityOf50GrnBanknotes = val;
+        }
+        #quantityOf100GrnBanknotes;
+        get QuantityOf100GrnBanknotes() {
+          return this.#quantityOf100GrnBanknotes;
+        }
+        set QuantityOf100GrnBanknotes(val) {
+          if (val < 0) throw new Error("Значення не може бути відємним");
+          this.#quantityOf100GrnBanknotes = val;
+        }
+        #quantityOf200GrnBanknotes;
+        get QuantityOf200GrnBanknotes() {
+          return this.#quantityOf200GrnBanknotes;
+        }
+        set QuantityOf200GrnBanknotes(val) {
+          if (val < 0) throw new Error("Значення не може бути відємним");
+          this.#quantityOf200GrnBanknotes = val;
+        }
+
+        constructor(
+          quantityOf5GrnBanknotes,
+          quantityOf10GrnBanknotes,
+          quantityOf20GrnBanknotes,
+          quantityOf50GrnBanknotes,
+          quantityOf100GrnBanknotes,
+          quantityOf200GrnBanknotes
+        ) {
+          this.QuantityOf5GrnBanknotes = quantityOf5GrnBanknotes;
+          this.QuantityOf10GrnBanknotes = quantityOf10GrnBanknotes;
+          this.QuantityOf20GrnBanknotes = quantityOf20GrnBanknotes;
+          this.QuantityOf50GrnBanknotes = quantityOf50GrnBanknotes;
+          this.QuantityOf100GrnBanknotes = quantityOf100GrnBanknotes;
+          this.QuantityOf200GrnBanknotes = quantityOf200GrnBanknotes;
+        }
+
+        getMaxSumToWithdrawal() {
+          let result =
+            5 * this.QuantityOf5GrnBanknotes +
+            10 * this.QuantityOf10GrnBanknotes +
+            20 * this.QuantityOf20GrnBanknotes +
+            50 * this.QuantityOf50GrnBanknotes +
+            100 * this.QuantityOf100GrnBanknotes +
+            200 * this.QuantityOf200GrnBanknotes;
+
+          return result;
+        }
+
+        getMinSumToWithdrawal() {
+          let result;
+          if (this.QuantityOf5GrnBanknotes > 0) result = 5;
+          else if (this.QuantityOf10GrnBanknotes > 0) result = 10;
+          else if (this.QuantityOf20GrnBanknotes > 0) result = 20;
+          else if (this.QuantityOf50GrnBanknotes > 0) result = 50;
+          else if (this.QuantityOf100GrnBanknotes > 0) result = 100;
+          else if (this.QuantityOf200GrnBanknotes > 0) result = 200;
+          return result;
+        }
+
+        withdrawal(withdrawalSum) {
+          if (this.getMaxSumToWithdrawal() < withdrawalSum)
+            throw new Error(
+              `Недостатньо коштів в банкоматі. Максимальна сума для виведення: ${this.getMaxSumToWithdrawal()} грн`
+            );
+          if (this.getMinSumToWithdrawal() > withdrawalSum)
+            throw new Error(
+              `Занадто маленька сума. Мінімальна сума для зняття ${this.getMinSumToWithdrawal()} грн`
+            );
+          if (withdrawalSum % this.getMinSumToWithdrawal() !== 0)
+            throw new Error(
+              `Некоректна сума. Введіть суму кратну ${this.getMinSumToWithdrawal()} грн`
+            );
+          if (
+            this.QuantityOf200GrnBanknotes > 0 &&
+            withdrawalSum >= 200 &&
+            Math.floor(withdrawalSum / 200) < this.QuantityOf200GrnBanknotes
+          ) {
+            this.QuantityOf200GrnBanknotes -= Math.floor(withdrawalSum / 200);
+            withdrawalSum -= 200 * Math.floor(withdrawalSum / 200);
+          } else if (
+            this.QuantityOf200GrnBanknotes > 0 &&
+            withdrawalSum >= 200 &&
+            Math.floor(withdrawalSum / 200) >= this.QuantityOf200GrnBanknotes
+          ) {
+            withdrawalSum -= 200 * this.QuantityOf200GrnBanknotes;
+            this.QuantityOf200GrnBanknotes = 0;
+          }
+          if (
+            this.QuantityOf100GrnBanknotes > 0 &&
+            withdrawalSum >= 100 &&
+            Math.floor(withdrawalSum / 100) < this.QuantityOf100GrnBanknotes
+          ) {
+            this.QuantityOf100GrnBanknotes -= Math.floor(withdrawalSum / 100);
+            withdrawalSum -= 100 * Math.floor(withdrawalSum / 100);
+          } else if (
+            this.QuantityOf100GrnBanknotes > 0 &&
+            withdrawalSum >= 100 &&
+            Math.floor(withdrawalSum / 100) >= this.QuantityOf100GrnBanknotes
+          ) {
+            withdrawalSum -= 100 * this.QuantityOf100GrnBanknotes;
+            this.QuantityOf100GrnBanknotes = 0;
+          }
+          if (
+            this.QuantityOf50GrnBanknotes > 0 &&
+            withdrawalSum >= 50 &&
+            Math.floor(withdrawalSum / 50) < this.QuantityOf50GrnBanknotes
+          ) {
+            this.QuantityOf50GrnBanknotes -= Math.floor(withdrawalSum / 50);
+            withdrawalSum -= 50 * Math.floor(withdrawalSum / 50);
+          } else if (
+            this.QuantityOf50GrnBanknotes > 0 &&
+            withdrawalSum >= 50 &&
+            Math.floor(withdrawalSum / 50) >= this.QuantityOf50GrnBanknotes
+          ) {
+            withdrawalSum -= 50 * this.QuantityOf50GrnBanknotes;
+            this.QuantityOf50GrnBanknotes = 0;
+          }
+          if (
+            this.QuantityOf20GrnBanknotes > 0 &&
+            withdrawalSum >= 20 &&
+            Math.floor(withdrawalSum / 20) < this.QuantityOf20GrnBanknotes
+          ) {
+            this.QuantityOf20GrnBanknotes -= Math.floor(withdrawalSum / 20);
+            withdrawalSum -= 20 * Math.floor(withdrawalSum / 20);
+          } else if (
+            this.QuantityOf20GrnBanknotes > 0 &&
+            withdrawalSum >= 20 &&
+            Math.floor(withdrawalSum / 20) >= this.QuantityOf20GrnBanknotes
+          ) {
+            withdrawalSum -= 20 * this.QuantityOf20GrnBanknotes;
+            this.QuantityOf20GrnBanknotes = 0;
+          }
+          if (
+            this.QuantityOf10GrnBanknotes > 0 &&
+            withdrawalSum >= 10 &&
+            Math.floor(withdrawalSum / 10) < this.QuantityOf10GrnBanknotes
+          ) {
+            this.QuantityOf10GrnBanknotes -= Math.floor(withdrawalSum / 10);
+            withdrawalSum -= 10 * Math.floor(withdrawalSum / 10);
+          } else if (
+            this.QuantityOf10GrnBanknotes > 0 &&
+            withdrawalSum >= 10 &&
+            Math.floor(withdrawalSum / 10) >= this.QuantityOf10GrnBanknotes
+          ) {
+            withdrawalSum -= 10 * this.QuantityOf10GrnBanknotes;
+            this.QuantityOf10GrnBanknotes = 0;
+          }
+          if (
+            this.QuantityOf5GrnBanknotes > 0 &&
+            withdrawalSum >= 5 &&
+            Math.floor(withdrawalSum / 5) < this.QuantityOf5GrnBanknotes
+          ) {
+            this.QuantityOf5GrnBanknotes -= Math.floor(withdrawalSum / 5);
+            withdrawalSum -= 5 * Math.floor(withdrawalSum / 5);
+          } else if (
+            this.QuantityOf5GrnBanknotes > 0 &&
+            withdrawalSum >= 5 &&
+            Math.floor(withdrawalSum / 5) >= this.QuantityOf5GrnBanknotes
+          ) {
+            withdrawalSum -= 5 * this.QuantityOf5GrnBanknotes;
+            this.QuantityOf5GrnBanknotes = 0;
+          }
+        }
+
+        toString() {
+          return `В банкоматі залишилося: <br> ${this.QuantityOf5GrnBanknotes} купюр номіналом 5 грн <br>  ${this.QuantityOf10GrnBanknotes} купюр номіналом 10 грн <br>  ${this.QuantityOf20GrnBanknotes} купюр номіналом 20 грн <br>  ${this.QuantityOf50GrnBanknotes} купюр номіналом 50 грн <br>  ${this.QuantityOf100GrnBanknotes} купюр номіналом 100 грн <br> ${this.QuantityOf200GrnBanknotes} купюр номіналом 200 грн <br> <br>`;
+        }
+      }
+
+      let ATM1 = new TBankomat(2000, 2000, 2000, 2000, 2000, 2000);
+
+      document.write(ATM1.toString());
+
+      ATM1.withdrawal(35480);
+
+      console.log(ATM1);
+      document.write(ATM1.toString());
+    </script>
+  </body>
+</html>
