@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      Склад. База товарів, які зберігаються на складі: назва товару, одиниця
+      виміру, кількість, фірма виробник (назва, реєстраційний номер).
+      Організувати реєстрацію/відвантаження товарів, фільтрація за назвою
+      товару, фільтрація за назвою фірми
+    </p>
+
+    <script>
+      class Stockpile {
+        constructor(goods) {
+          this.goods = goods;
+        }
+
+        goodsRegistration(newGoods) {
+          let isAbsent = false;
+          for (let goods of this.goods) {
+            if (
+              newGoods.goodsTitle === goods.goodsTitle &&
+              newGoods.producerCompany.registrationNumber ===
+                goods.producerCompany.registrationNumber
+            ) {
+              goods.Quantity += newGoods.Quantity;
+              isAbsent = true;
+              break;
+            }
+          }
+          if (isAbsent === false) this.goods.push(newGoods);
+        }
+
+        goodsShipment(shipmentGoods) {
+          for (let goods of this.goods) {
+            if (
+              shipmentGoods.goodsTitle === goods.goodsTitle &&
+              shipmentGoods.producerCompany.registrationNumber ===
+                shipmentGoods.producerCompany.registrationNumber
+            ) {
+              goods.Quantity -= shipmentGoods.Quantity;
+            }
+          }
+        }
+
+        filtrationByGoodsTitle(goodsTitle) {
+          let copy = JSON.parse(JSON.stringify(this.goods));
+          let filtered = copy.filter((el) => el.goodsTitle === goodsTitle);
+          return filtered;
+        }
+
+        filtrationByCompanyTitle(companyTitle) {
+          let copy = JSON.parse(JSON.stringify(this.goods));
+          let filtered = copy.filter(
+            (el) => el.producerCompany.companyTitle === companyTitle
+          );
+          return filtered;
+        }
+
+        toString() {
+          let result = "";
+          this.goods.forEach((el) => {
+            result += `${el.goodsTitle}: ${el.Quantity} ${el.unit} <br>`;
+          });
+          return result;
+        }
+      }
+
+      class Goods {
+        #quantity;
+        get Quantity() {
+          return this.#quantity;
+        }
+        set Quantity(val) {
+          if (val < 0) throw new Error("Значення не може бути відємним");
+          this.#quantity = val;
+        }
+        constructor(goodsTitle, unit, quantity, producerCompany) {
+          (this.goodsTitle = goodsTitle),
+            (this.unit = unit),
+            (this.Quantity = quantity),
+            (this.producerCompany = producerCompany);
+        }
+      }
+
+      let goods = [
+        new Goods("Деревина", "куб. м", 3000, {
+          companyTitle: "Woodcutter",
+          registrationNumber: 6592
+        }),
+        new Goods("Бетон", "т", 5000, {
+          companyTitle: "ЗЗК",
+          registrationNumber: 5431
+        }),
+        new Goods("Мідний дріт", "км", 80, {
+          companyTitle: "Техпровод",
+          registrationNumber: 3478
+        }),
+        new Goods("Краска", "л", 2500, {
+          companyTitle: "Подільскій лакофарбовий завод",
+          registrationNumber: 1114
+        })
+      ];
+
+      let stockpile = new Stockpile(goods);
+
+      stockpile.goodsRegistration(
+        new Goods("Підшипники", "шт.", 5000, {
+          companyTitle: "МоторПлюс",
+          registrationNumber: 7412
+        })
+      );
+
+      stockpile.goodsRegistration(
+        new Goods("Деревина", "куб. м", 200, {
+          companyTitle: "Woodcutter",
+          registrationNumber: 6592
+        })
+      );
+
+      stockpile.goodsShipment(
+        new Goods("Деревина", "куб. м", 500, {
+          companyTitle: "Woodcutter",
+          registrationNumber: 6592
+        })
+      );
+
+      console.log(stockpile);
+      console.log(stockpile.filtrationByGoodsTitle("Підшипники"));
+      console.log(stockpile.filtrationByCompanyTitle("ЗЗК"));
+
+      document.write(stockpile);
+
+      document.write();
+    </script>
+  </body>
+</html>

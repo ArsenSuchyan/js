@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+  </head>
+  <body>
+    <h1>Задача 1</h1>
+    <p>
+      Створити клас, що дозволяє виконувати такі операції над масивами:
+      знаходження кількості додатних, кількості від’ємних, кількість входжень
+      деякого числа (статичні методи)
+    </p>
+
+    <script>
+      class ArrayOperations {
+        static getQuantityOfPositive(array) {
+          return array.reduce(
+            (prevVal, el) => (el > 0 ? prevVal + 1 : prevVal),
+            0
+          );
+        }
+
+        static getQuantityOfNegative(array) {
+          return array.reduce(
+            (prevVal, el) => (el < 0 ? prevVal + 1 : prevVal),
+            0
+          );
+        }
+
+        static getQuantityOfChosenNumber(array, num) {
+          return array.reduce(
+            (prevVal, el) => (el === num ? prevVal + 1 : prevVal),
+            0
+          );
+        }
+      }
+
+      let arr1 = [5, -3, 8, 12, 8, -10];
+
+      document.write(
+        `Кількість додатних у масиві: ${ArrayOperations.getQuantityOfPositive(
+          arr1
+        )} <br>`
+      );
+      document.write(
+        `Кількість від'ємних у масиві: ${ArrayOperations.getQuantityOfNegative(
+          arr1
+        )} <br>`
+      );
+      document.write(
+        `Кількість входжень у масиві: ${ArrayOperations.getQuantityOfChosenNumber(
+          arr1,
+          8
+        )} <br>`
+      );
+    </script>
+  </body>
+</html>
