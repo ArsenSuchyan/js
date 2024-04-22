@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 7</title>
+  </head>
+  <body>
+    <h1>Задача 7</h1>
+    <p>
+      Подорож складається з 3 етапів. На кожному етапі користувач може вибрати
+      один з видів транспорту (авто, автобус, літак - випадаючий список),
+      харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х
+      гідів(використати - radio buttons). Ціни визначте самі. Підрахувати
+      загальну вартість.
+    </p>
+
+    <h2>1 Етап. Вибір виду транспорту</h2>
+    <div>
+      <select id="transport">
+        <option value="4000">Авто</option>
+        <option value="2000">Автобус</option>
+        <option value="6000">Літак</option>
+      </select>
+    </div>
+    <h2>2 Етап. Вибір харчування</h2>
+    <div>
+      <label>
+        Сніданок
+        <input type="checkbox" value="500"/>
+      </label>
+      <label>
+        Обід
+        <input type="checkbox" value="500"/>
+      </label>
+      <label>
+        Вечеря
+        <input type="checkbox" value="500"/>
+      </label>
+    </div>
+    <h2>3 Етап. Вибір гіду</h2>
+    <div>
+      <label>
+        Гід №1
+        <input type="radio" name="guide" value="1000"/>
+     
+      <label>
+        Гід №2
+        <input type="radio" name="guide" value="1500"/>
+    
+      <label>
+        Гід №3
+        <input type="radio" name="guide" value="1800"/>
+      </label>
+    </div>
+    <button id="total-price-button">Підрахувати вартість</button>
+
+    <script>
+      let getTotalPriceButton = document.getElementById('total-price-button')
+      
+      getTotalPriceButton.onclick = getTotalPrice
+
+       function getTotalPrice() {
+         let totalPrice = 0
+         let chosenTransport = document.getElementById('transport')
+         let nutrition = document.querySelectorAll('input[type=checkbox]')
+         let guidList = document.querySelectorAll('input[type=radio]')
+
+         totalPrice += parseFloat(chosenTransport.value)
+         for (let meal of nutrition) {
+            if (meal.checked) totalPrice += parseFloat(meal.value)
+         }
+
+         for (let guid of guidList) {
+            if (guid.checked) totalPrice += parseFloat(guid.value)
+         }
+         let resultField = document.createElement('div')
+         resultField.innerText = `Вартість поїздки з обраними параметрами становитиме ${totalPrice} грн`
+         getTotalPriceButton.after(resultField)
+      }
+
+      
+     
+
+    
+    </script>
+  </body>
+</html>

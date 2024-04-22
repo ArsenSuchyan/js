@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 2</title>
+  </head>
+  <body>
+    <script>
+      const euroRate = 42;
+      const dollarRate = 40;
+      window.onload = function () {
+        let amountInEUR = document.getElementById("amountInEUR");
+        let amountInUSD = document.getElementById("amountInUSD");
+        let conversion = document.getElementById("convert");
+        conversion.onclick = convert;
+      };
+
+      function convert() {
+        convertToEUR();
+        convertToUSD();
+      }
+      function convertToEUR() {
+        let amountInGRN = document.getElementById("amountInGRN");
+        return (amountInEUR.value = parseFloat(amountInGRN.value) / euroRate);
+      }
+      function convertToUSD() {
+        let amountInGRN = document.getElementById("amountInGRN");
+        return (amountInUSD.value = parseFloat(amountInGRN.value) / dollarRate);
+      }
+    </script>
+
+    <h1>Задача 2</h1>
+    <p>Зробити конвертер валют (курси валют – константи у скрипті)</p>
+
+    <label>
+      Сума в гривнях
+      <input type="number" id="amountInGRN" />
+    </label>
+    <br />
+    <button id="convert">Конвертувати</button>
+    <hr />
+    <label>
+      Сума в євро
+      <input type="number" id="amountInEUR" />
+    </label>
+    <br />
+    <label>
+      Сума в доларах
+      <input type="number" id="amountInUSD" />
+    </label>
+  </body>
+</html>

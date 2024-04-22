@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+  </head>
+  <body>
+    <script>
+      const currentYear = 2024;
+      window.onload = function () {
+        let calculateButton = document.getElementById("calculateButton");
+        let userAge = document.getElementById("userAge");
+        calculateButton.onclick = calculateAge;
+      };
+
+      function calculateAge() {
+        let yearOfBirth = document.getElementById("yearOfBirth");
+        return (userAge.value = currentYear - parseFloat(yearOfBirth.value));
+      }
+    </script>
+
+    <h1>Задача 3</h1>
+    <p>
+      Користувач задає рік народження. Визначити кількість років користувача.
+    </p>
+
+    <label>
+      Введіть вашу дату народження
+      <input type="number" id="yearOfBirth" />
+    </label>
+    <br />
+    <button id="calculateButton">Визначити вік</button>
+    <hr />
+    <label>
+      Ваш вік
+      <input type="number" id="userAge" />
+    </label>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 6</title>
+  </head>
+  <body>
+    <h1>Задача 6</h1>
+    <p>
+      Користувач задає кількість оцінок і натискає на кнопку «get table». В
+      результаті формується таблиця з input, куди користувач вводить оцінки.
+      Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+    </p>
+    <label>
+      Score number
+      <input type="number" id="scoreNumber" />
+    </label>
+    <br />
+    <button id="getTableButton">get table</button>
+    <hr />
+    <button id="getAverageButton">get average score</button>
+    <script>
+      let scoreNumberInput = document.getElementById("scoreNumber");
+      let getTableButton = document.getElementById("getTableButton");
+      let getAverageButton = document.getElementById("getAverageButton");
+
+      getTableButton.onclick = getTable;
+      getAverageButton.onclick = getAverageScore;
+
+      function getTable() {
+        let scoreNumber = parseInt(scoreNumberInput.value);
+        let table = document.createElement("table");
+        for (let i = 0; i < scoreNumber; i++) {
+          let row = document.createElement("tr");
+          let input = document.createElement("input");
+          input.type = "number";
+          input.className = "user-score";
+          row.prepend(input);
+          table.prepend(row);
+        }
+        getTableButton.after(table);
+      }
+
+      function getAverageScore() {
+        let scoresSum = 0;
+        let scores = document.querySelectorAll(".user-score");
+        for (let score of scores) {
+          scoresSum += parseFloat(score.value);
+        }
+        let result = scoresSum / scores.length;
+        let divForResult = document.createElement("div");
+        divForResult.innerText = `average score = ${result}`;
+        getAverageButton.after(divForResult);
+      }
+    </script>
+  </body>
+</html>

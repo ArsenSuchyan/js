@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+  </head>
+  <body>
+    <script>
+      function add() {
+        let firstNumber = document.getElementById("firstNumber");
+        let secondNumber = document.getElementById("secondNumber");
+        let sum =
+          parseFloat(firstNumber.value) + parseFloat(secondNumber.value);
+        return (result.value = sum);
+      }
+      function subtract() {
+        let firstNumber = document.getElementById("firstNumber");
+        let secondNumber = document.getElementById("secondNumber");
+        let rest =
+          parseFloat(firstNumber.value) - parseFloat(secondNumber.value);
+        return (result.value = rest);
+      }
+      function multiplicate() {
+        let firstNumber = document.getElementById("firstNumber");
+        let secondNumber = document.getElementById("secondNumber");
+        let product =
+          parseFloat(firstNumber.value) * parseFloat(secondNumber.value);
+        return (result.value = product);
+      }
+      function divide() {
+        let firstNumber = document.getElementById("firstNumber");
+        let secondNumber = document.getElementById("secondNumber");
+        let fraction =
+          parseFloat(firstNumber.value) / parseFloat(secondNumber.value);
+        return (result.value = fraction);
+      }
+      window.onload = function () {
+        let result = document.getElementById("result");
+        let adding = document.getElementById("adding");
+        let subtraction = document.getElementById("subtraction");
+        let multiplication = document.getElementById("multiplication");
+        let division = document.getElementById("division");
+        adding.onclick = add;
+        subtraction.onclick = subtract;
+        multiplication.onclick = multiplicate;
+        division.onclick = divide;
+      };
+    </script>
+
+    <h1>Задача 1</h1>
+    <p>Розробити калькулятор</p>
+
+    <label>
+      First number
+      <input type="number" id="firstNumber" />
+    </label>
+    <br />
+    <label>
+      Second number
+      <input type="number" id="secondNumber" />
+    </label>
+    <br />
+    <button id="adding">Додати</button>
+    <button id="subtraction">Відняти</button>
+    <button id="multiplication">Помножити</button>
+    <button id="division">Поділити</button>
+    <hr />
+    <label>
+      Результат
+      <input type="number" id="result" />
+    </label>
+  </body>
+</html>
