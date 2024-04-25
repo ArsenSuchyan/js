@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 6</title>
+    <style>
+      .container {
+        display: flex;
+      }
+      #commonList,
+      #chosenList {
+        border: 2px solid black;
+        margin-right: 50px;
+        width: 200px;
+        height: 400px;
+      }
+      img {
+        width: 20px;
+        height: 20px;
+      }
+      .sportsmen {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Задача 6</h1>
+    <p>
+      Дано список спортсменів. Потрібно сформувати список тих, які будуть брати
+      участь у змаганні. При цьому є два стовпці. В одному відображені всі
+      спортсмени, в іншому – список тих, хто був вибраний. При натисканні на
+      зелену стрілку спортсмен переміщається у список для змагань. При
+      натисканні на червону стрілку спортсмен переміщається у загальний список.
+    </p>
+    <!-- <img src="img/red-arrow.jpg" alt=""> -->
+
+    <div class="container">
+      <div class="block">
+        <h5>Загальний список</h5>
+        <div id="commonList">
+          <div class="sportsmen">
+            <h6 class="sportsmen-name">John Depp</h6>
+            <button>
+              <img src="img/green-arrow.jpg" class="green-arrow" />
+            </button>
+          </div>
+          <div class="sportsmen">
+            <h6 class="sportsmen-name">Sara Wilk</h6>
+            <button>
+              <img src="img/green-arrow.jpg" class="green-arrow" />
+            </button>
+          </div>
+          <div class="sportsmen">
+            <h6 class="sportsmen-name">Den Miro</h6>
+            <button>
+              <img src="img/green-arrow.jpg" class="green-arrow" />
+            </button>
+          </div>
+          <div class="sportsmen">
+            <h6 class="sportsmen-name">Alan Woo</h6>
+            <button>
+              <img src="img/green-arrow.jpg" class="green-arrow" />
+            </button>
+          </div>
+          <div class="sportsmen">
+            <h6 class="sportsmen-name">Olga Sich</h6>
+            <button>
+              <img src="img/green-arrow.jpg" class="green-arrow" />
+            </button>
+          </div>
+          <div class="sportsmen">
+            <h6 class="sportsmen-name">Ivan Hall</h6>
+            <button>
+              <img src="img/green-arrow.jpg" class="green-arrow" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="block">
+        <h5>Обрані для змагання</h5>
+        <div id="chosenList"></div>
+      </div>
+    </div>
+    <script>
+      commonList.onclick = moveToChosen;
+      chosenList.onclick = moveToCommon;
+
+      function moveToChosen(click) {
+        if (click.target.closest("button")) {
+          let sportsmen = click.target.closest("button").parentElement;
+          click.target.closest("button").remove();
+          sportsmen.remove();
+          let removeButton = document.createElement("button");
+          let redArrow = document.createElement("img");
+          redArrow.setAttribute("src", "img/red-arrow.jpg");
+          removeButton.append(redArrow);
+          chosenList.append(sportsmen);
+          sportsmen.append(removeButton);
+        }
+      }
+
+      function moveToCommon(click) {
+        if (click.target.closest("button")) {
+          let sportsmen = click.target.closest("button").parentElement;
+          click.target.closest("button").remove();
+          sportsmen.remove();
+          let removeButton = document.createElement("button");
+          let greenArrow = document.createElement("img");
+          greenArrow.setAttribute("src", "img/green-arrow.jpg");
+          removeButton.append(greenArrow);
+          commonList.append(sportsmen);
+          sportsmen.append(removeButton);
+        }
+      }
+    </script>
+  </body>
+</html>

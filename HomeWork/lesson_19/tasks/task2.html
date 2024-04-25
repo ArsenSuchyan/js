@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 2</title>
+    <style>
+      label {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Задача 2</h1>
+    <p>
+      Дано 5 елементів input. При введенні значення у якийсь із них необхідно
+      автоматично заповнювати інші (усі попередні у спадному порядку(кожен
+      попередній має значення на 1 менше за наступний), усі наступні на 1 більше
+      (кожен наступне на 1 більше за попереднього)
+    </p>
+
+    <div id="div">
+      <label>
+        Value 1
+        <input type="number" value="1" />
+      </label>
+
+      <label>
+        Value 2
+        <input type="number" value="1" />
+      </label>
+
+      <label>
+        Value 3
+        <input type="number" value="1" />
+      </label>
+
+      <label>
+        Value 4
+        <input type="number" value="1" id="a" />
+      </label>
+
+      <label>
+        Value 5
+        <input type="number" value="1" />
+      </label>
+    </div>
+
+    <script>
+      let inputs = document.querySelectorAll("input");
+      for (let input of inputs) {
+        input.oninput = onInput;
+      }
+      function onInput(change) {
+        if (change.target.value) {
+          let target = change.target.parentElement;
+          let nextSibling = target;
+          let previousSibling = target;
+          while (nextSibling.nextElementSibling) {
+            nextSibling.nextElementSibling.firstElementChild.value =
+              parseFloat(nextSibling.firstElementChild.value) + 1;
+            nextSibling = nextSibling.nextElementSibling;
+          }
+          while (previousSibling.previousElementSibling) {
+            previousSibling.previousElementSibling.firstElementChild.value =
+              parseFloat(previousSibling.firstElementChild.value) - 1;
+            previousSibling = previousSibling.previousElementSibling;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

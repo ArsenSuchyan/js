@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+  </head>
+  <body>
+    <h1>Задача 3</h1>
+    <p>
+      Дано 5 випадковим чином згенерованих нумерованих списків з рандомними
+      числами (кількість елементів у списку випадкова від 1 до 10, елементи
+      випадкові – від 1 до 100). При натисненні на кнопку нумеровані списки з
+      парною кількістю елементів зафарбувати у зелений колір, інші у червоний.
+    </p>
+
+    <button id="toPaint">Зафарбувати списки</button>
+    <script>
+      for (let i = 0; i < 5; i++) {
+        let numberOfElements = 1 + Math.floor(Math.random() * 10);
+        let list = document.createElement("ol");
+        for (let i = 0; i < numberOfElements; i++) {
+          let element = document.createElement("li");
+          let randNum = 1 + Math.floor(Math.random() * 100);
+          element.innerText = randNum;
+          list.append(element);
+        }
+        document.body.append(list);
+      }
+
+      toPaint.onclick = paint;
+      function paint() {
+        lists = document.querySelectorAll("ol");
+        for (let list of lists) {
+          if (list.children.length % 2 === 0)
+            for (let element of list.children) {
+              element.style.color = "green";
+            }
+          else
+            for (let element of list.children) {
+              element.style.color = "red";
+            }
+        }
+      }
+    </script>
+  </body>
+</html>

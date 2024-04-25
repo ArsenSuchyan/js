@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 5</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-around;
+      }
+      .green {
+        outline: 5px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Задача 5</h1>
+    <p>
+      Відображаємо картки товарів, які користувач може вибирати. Вибраний товар
+      має зелену рамку (при кліку робити toogle з класом вибраного елемента)
+    </p>
+
+    <div class="container">
+      <div>
+        <img src="img/img1.png" />
+      </div>
+      <div>
+        <img src="img/img2.png" />
+      </div>
+      <div>
+        <img src="img/img3.png" />
+      </div>
+      <div>
+        <img src="img/img4.png" />
+      </div>
+    </div>
+
+    <script>
+      function outline(click) {
+        if (click.target.tagName === "IMG") {
+          click.target.classList.toggle("green");
+        }
+      }
+      document.body.onclick = outline;
+    </script>
+  </body>
+</html>

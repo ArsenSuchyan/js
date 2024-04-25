@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 7</title>
+    <style>
+      #snowflake {
+        width: 30px;
+        height: 30px;
+        background-color: rgb(121, 232, 232);
+        border-radius: 50%;
+        margin-left: 500px;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Задача 7</h1>
+    <p>
+      Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану
+      (top =0) і з випадковою швидкістю рухається вниз (у setInterval викликати
+      метод, у якому додавати крок до top). Як тільки сніжинка досягає нижньої
+      частини екрану (top>maxTop) вона знову повинна з’явитись у верхній частині
+      екрану (top=0).
+    </p>
+
+    <div id="snowflake"></div>
+
+    <script>
+      snowflake.style.top = "0px";
+
+      function snowfall() {
+        let yCoordinate = snowflake.style.top;
+        yCoordinate = parseFloat(yCoordinate) + 10 + "px";
+        snowflake.style.top = yCoordinate;
+        if (parseFloat(yCoordinate) > window.innerHeight)
+          snowflake.style.top = "0px";
+      }
+
+      setInterval(snowfall, 50 + Math.floor(Math.random() * 101));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+    <style>
+      table {
+        margin-bottom: 20px;
+      }
+      td {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається
+      клік на якійсь із клітинок, то до відповідної таблиці додається червона
+      рамка (спробуйте додати можливість відображення кількості кліків біля
+      назви таблиці з використанням відповідно доданого для цього атрибута).
+    </p>
+
+    <script>
+      function makeTable(rows, cols, minNum, maxNum, tableNumber) {
+        let table = document.createElement("table");
+        let tableTitle = document.createElement("h2");
+        let counter = document.createElement("div");
+        let span = document.createElement("span");
+
+        counter.innerText = "Кількість кліків: ";
+
+        tableTitle.innerText = `Таблиця № ${tableNumber}`;
+        document.body.append(table);
+        table.before(tableTitle);
+        tableTitle.after(counter);
+        counter.append(span);
+        table.setAttribute("clickNumber", 0);
+        span.innerText = `${table.getAttribute("clickNumber")}`;
+        for (let r = 0; r < rows; r++) {
+          let row = document.createElement("tr");
+
+          for (let c = 0; c < cols; c++) {
+            let col = document.createElement("td");
+            let num =
+              minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+            col.innerText = num;
+            row.append(col);
+          }
+          table.append(row);
+        }
+      }
+      makeTable(3, 3, 1, 100, 1);
+      makeTable(3, 3, 1, 100, 2);
+      makeTable(3, 3, 1, 100, 3);
+
+      function addBorder(click) {
+        let target = click.target;
+        if (target.tagName === "TD")
+          target.closest("table").style.border = "2px solid red";
+      }
+
+      function count(click) {
+        let target = click.target;
+        if (target.tagName === "TD") {
+          target
+            .closest("table")
+            .setAttribute(
+              "clickNumber",
+              parseFloat(target.closest("table").getAttribute("clickNumber")) +
+                1
+            );
+          parseFloat(target.closest("table").clickNumber) + 1;
+
+          target.closest(
+            "table"
+          ).previousElementSibling.firstElementChild.innerText = target
+            .closest("table")
+            .getAttribute("clickNumber");
+        }
+      }
+
+      document.body.onclick = addBorder;
+      document.body.addEventListener("click", count);
+    </script>
+  </body>
+</html>
