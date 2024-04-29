@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .filter-block,
+      button {
+        margin-bottom: 20px;
+        margin-right: 20px;
+        display: inline-block;
+      }
+
+      .result-block {
+        border: 2px solid black;
+        width: 300px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Задача 1</h1>
+    <p>
+      Дано список автомобілів (марка, рік випуску, ціна). Сформувати елементи
+      для фільтрування з використанням випадаючого списку (контент цих
+      випадаючих списків сформувати у залежності від переданого списку).
+    </p>
+
+    <div id="container"></div>
+
+    <script>
+      const autoList = [
+        {
+          brand: "Mercedes",
+          yearOfIssue: 2000,
+          price: 10000
+        },
+        {
+          brand: "Opel",
+          yearOfIssue: 2004,
+          price: 5000
+        },
+        {
+          brand: "Opel",
+          yearOfIssue: 2018,
+          price: 15000
+        },
+        {
+          brand: "Mercedes",
+          yearOfIssue: 2019,
+          price: 25000
+        },
+        {
+          brand: "BMW",
+          yearOfIssue: 2015,
+          price: 30000
+        },
+        {
+          brand: "Toyota",
+          yearOfIssue: 2004,
+          price: 12000
+        },
+        {
+          brand: "Ford",
+          yearOfIssue: 2015,
+          price: 12000
+        },
+        {
+          brand: "Toyota",
+          yearOfIssue: 2019,
+          price: 20000
+        },
+        {
+          brand: "Nissan",
+          yearOfIssue: 2017,
+          price: 18000
+        },
+        {
+          brand: "Nissan",
+          yearOfIssue: 2018,
+          price: 21000
+        }
+      ];
+
+      autoList.sort((el1, el2) => {
+        if (el1.yearOfIssue > el2.yearOfIssue) return 1;
+        else if (el1.yearOfIssue < el2.yearOfIssue) return -1;
+        else return 0;
+      });
+
+      class FilterGenerator {
+        constructor(autoList, parentElement) {
+          this.autoList = autoList;
+          this.parentElement = parentElement;
+          this.filter = this.render();
+        }
+
+        render() {
+          this.brandFilter = this.createBrandListFilter();
+          this.parentElement.append(this.brandFilter);
+          this.yearOfIssueFilter = this.createYearOfIssueFilter();
+          this.parentElement.append(this.yearOfIssueFilter);
+
+          this.parentElement.append(this.createSearchButton());
+          let resultTitle = document.createElement("h2");
+          resultTitle.innerText = "Результат пошуку";
+          this.parentElement.append(resultTitle);
+          this.result = document.createElement("div");
+
+          this.result.className = "result-block";
+          this.parentElement.append(this.result);
+
+          this.brandSelect = this.brandFilter.lastElementChild;
+          this.brandValue = this.brandSelect.value;
+
+          this.yearOfIssueSelect = this.yearOfIssueFilter.lastElementChild;
+          this.yearOfIssueValue = parseInt(this.yearOfIssueSelect.value);
+        }
+
+        createBrandList() {
+          let brandList = [];
+          for (let auto of this.autoList) {
+            if (!brandList.includes(auto.brand)) brandList.push(auto.brand);
+          }
+          return brandList;
+        }
+
+        createBrandListFilter() {
+          const filterBlock = document.createElement("div");
+          filterBlock.className = "filter-block";
+          const filterTitle = document.createElement("h2");
+          filterTitle.innerText = "Марка";
+          filterBlock.append(filterTitle);
+          const filter = document.createElement("select");
+          const emptyOption = document.createElement("option");
+          filter.append(emptyOption);
+          filter.setAttribute("type", "brand");
+          let brandList = this.createBrandList();
+          brandList.forEach((el) => {
+            const brandVariation = document.createElement("option");
+            brandVariation.innerText = el;
+            filter.append(brandVariation);
+          });
+          filterBlock.append(filter);
+          return filterBlock;
+        }
+
+        createYearOfIssueList() {
+          let yearOfIssueList = [];
+          for (let auto of this.autoList) {
+            if (!yearOfIssueList.includes(auto.yearOfIssue))
+              yearOfIssueList.push(auto.yearOfIssue);
+          }
+          return yearOfIssueList;
+        }
+
+        createYearOfIssueFilter() {
+          const filterBlock = document.createElement("div");
+          filterBlock.className = "filter-block";
+          const filterTitle = document.createElement("h2");
+          filterTitle.innerText = "Рік випуску";
+          filterBlock.append(filterTitle);
+          const filter = document.createElement("select");
+          const emptyOption = document.createElement("option");
+          filter.append(emptyOption);
+          filter.setAttribute("type", "yearOfIssue");
+          let yearOfIssueList = this.createYearOfIssueList();
+          yearOfIssueList.forEach((el) => {
+            const yearOfIssueVariation = document.createElement("option");
+            yearOfIssueVariation.innerText = el;
+            filter.append(yearOfIssueVariation);
+          });
+          filterBlock.append(filter);
+          return filterBlock;
+        }
+
+        createSearchButton() {
+          const searchButton = document.createElement("button");
+          searchButton.innerText = "Шукати";
+          searchButton.onclick = this.showResult.bind(this);
+          return searchButton;
+        }
+
+        refreshValues() {
+          this.brandValue = this.brandSelect.value;
+          this.yearOfIssueValue = parseInt(this.yearOfIssueSelect.value);
+        }
+
+        search() {
+          this.refreshValues();
+          let selected = [];
+          for (let auto of this.autoList) {
+            if (
+              (this.brandValue === auto.brand &&
+                this.yearOfIssueValue === auto.yearOfIssue) ||
+              (this.brandValue === auto.brand && !this.yearOfIssueValue) ||
+              (!this.brandValue &&
+                this.yearOfIssueValue === auto.yearOfIssue) ||
+              (!this.brandValue && !this.yearOfIssueValue)
+            )
+              selected.push(auto);
+          }
+
+          return selected;
+        }
+
+        showResult() {
+          let selected = this.search();
+          let resultValue = "";
+          if (selected.length === 0)
+            resultValue = "Немає результату що задовільнює такі параметри";
+          else
+            selected.forEach((el) => {
+              resultValue += `${el.brand} - ${el.yearOfIssue} - ${el.price}$
+            `;
+            });
+          let result = document.createElement("div");
+
+          result.innerText = resultValue;
+          this.result.innerText = resultValue;
+        }
+      }
+      let container = document.getElementById("container");
+      let test = new FilterGenerator(autoList, container);
+    </script>
+  </body>
+</html>
