@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+    <style>
+      label,
+      button {
+        display: block;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      Користувач задає місяць навчання учня (перевіряти чи є числом, чи від 1 до
+      12, чи не канікули) та оцінку (перевіряти чи є числом, чи від 1 до 100).
+      Вивести чи зможе він виправити оцінку (якщо оцінка погана і це не останній
+      місяць у семестрі) . Обробку усіх помилок зробити з використанням
+      відповідних класів.
+    </p>
+
+    <label>
+      Введіть місяць навчання учня
+      <input id="monthInput" type="text" />
+    </label>
+
+    <label>
+      Введіть оцінку учня
+      <input id="markInput" type="text" />
+    </label>
+
+    <button id="checkButton">Чи можна виправити оцінку</button>
+
+    <h2>Результат</h2>
+    <div id="result"></div>
+
+    <script>
+      class NotANumber extends Error {
+        constructor() {
+          super();
+          this.name = "NotANumber";
+          this.message = "Можна ввести тільки числове значення";
+        }
+      }
+
+      class NotInRange extends Error {
+        constructor() {
+          super();
+          this.name = "NotInRange";
+          this.message = "Введене значення не відповідає визначеному діапазону";
+        }
+      }
+
+      class Holidays extends Error {
+        constructor() {
+          super();
+          this.name = "Holidays";
+          this.message = "Університет не працює під час літніх канікул";
+        }
+      }
+
+      class GoodEnough extends Error {
+        constructor() {
+          super();
+          this.name = "GoodEnough";
+          this.message = "Оцінка вже висока і не потребує виправлення";
+        }
+      }
+
+      class LastMonthOfSemester extends Error {
+        constructor() {
+          super();
+          this.name = "LastMonthOfSemester";
+          this.message = "В останній місяць семестру виправлення неможливе";
+        }
+      }
+
+      class MarkCorrecting {
+        constructor() {
+          checkButton.onclick = this.check.bind(this);
+        }
+        initialization() {
+          this.month = parseInt(monthInput.value);
+          this.mark = parseInt(markInput.value);
+        }
+        check() {
+          this.initialization();
+          try {
+            if (isNaN(this.month)) throw new NotANumber();
+            if (this.month < 1 || this.month > 12) throw new NotInRange();
+            if (this.month > 5 && this.month < 9) throw new Holidays();
+            if (isNaN(this.mark)) throw new NotANumber();
+            if (this.mark < 1 || this.mark > 100) throw new NotInRange();
+            if (this.mark >= 90) throw new GoodEnough();
+            if (this.month === 1 || this.month === 5)
+              throw new LastMonthOfSemester();
+            result.innerText = "Виправлення можливе";
+          } catch (error) {
+            if (error instanceof NotANumber) {
+              result.innerText = "Можна ввести тільки числове значення";
+            }
+            if (error instanceof NotInRange) {
+              result.innerText =
+                "Введене значення не відповідає визначеному діапазону";
+            }
+            if (error instanceof Holidays) {
+              result.innerText = "Університет не працює під час літніх канікул";
+            }
+            if (error instanceof GoodEnough) {
+              result.innerText = "Оцінка вже висока і не потребує виправлення";
+            }
+            if (error instanceof LastMonthOfSemester) {
+              result.innerText =
+                "В останній місяць семестру виправлення неможливе";
+            }
+          }
+        }
+      }
+
+      let app = new MarkCorrecting();
+
+      // console.log(typeof 5);
+    </script>
+  </body>
+</html>

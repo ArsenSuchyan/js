@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+    <style>
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Задача 3</h1>
+    <p>Розробити Класи</p>
+    <ul>
+      House
+      <li>Координата Х</li>
+      <li>Координата У</li>
+      <li>шлях до зображення</li>
+      <li>інтервал оновлення</li>
+      <li>генерування елемента розмітки</li>
+      <li>
+        оновлення через вказаний інтервал (збільшення або зменшення масштабу
+        (об’єкт не рухається)
+      </li>
+    </ul>
+    <ul>
+      Dog
+      <li>Координата Х</li>
+      <li>Координата У</li>
+      <li>шлях до зображення</li>
+      <li>інтервал оновлення</li>
+      <li>генерування елемента розмітки</li>
+      <li>
+        оновлення через вказаний інтервал (випадкове зміщення по горизонталі
+        (зміна координати Х))
+      </li>
+    </ul>
+    <ul>
+      Bird
+      <li>Координата Х</li>
+      <li>Координата У</li>
+      <li>шлях до зображення</li>
+      <li>інтервал оновлення</li>
+      <li>генерування елемента розмітки</li>
+      <li>
+        оновлення через вказаний інтервал (випадкове переміщення у довільному
+        напрямку)
+      </li>
+    </ul>
+
+    <!-- <img src="img/bird.jpg" /> -->
+
+    <script>
+      class createElement {
+        constructor(coordinateX, coordinateY, imgPath, renewalInterval) {
+          this.coordinateX = coordinateX;
+          this.coordinateY = coordinateY;
+          this.imgPath = imgPath;
+          this.renewalInterval = renewalInterval;
+          this.el = this.render();
+        }
+        render() {
+          let object = document.createElement("img");
+          object.setAttribute("src", this.imgPath);
+          object.style.position = "absolute";
+          object.style.left = `${this.coordinateX}px`;
+          object.style.top = `${this.coordinateY}px`;
+          document.body.append(object);
+          return object;
+        }
+      }
+
+      class House extends createElement {
+        constructor(coordinateX, coordinateY, imgPath, renewalInterval) {
+          super(coordinateX, coordinateY, imgPath, renewalInterval);
+        }
+        scale() {
+          setInterval(() => {
+            let randomScale = (5 + Math.floor(Math.random() * 16)) / 10;
+            this.el.style.transform = `scale(${randomScale})`;
+          }, this.renewalInterval);
+        }
+      }
+
+      class Dog extends createElement {
+        constructor(coordinateX, coordinateY, imgPath, renewalInterval) {
+          super(coordinateX, coordinateY, imgPath, renewalInterval);
+        }
+        shift() {
+          setInterval(() => {
+            let randomShift = -100 + Math.floor(Math.random() * 201);
+            this.el.style.left = `${
+              parseFloat(this.el.style.left) + randomShift
+            }px`;
+          }, this.renewalInterval);
+        }
+      }
+
+      class Bird extends createElement {
+        constructor(coordinateX, coordinateY, imgPath, renewalInterval) {
+          super(coordinateX, coordinateY, imgPath, renewalInterval);
+        }
+        fly() {
+          setInterval(() => {
+            let randomLeftShift = -100 + Math.floor(Math.random() * 201);
+            let randomTopShift = -100 + Math.floor(Math.random() * 201);
+            this.el.style.left = `${
+              parseFloat(this.el.style.left) + randomLeftShift
+            }px`;
+            this.el.style.top = `${
+              parseFloat(this.el.style.left) + randomTopShift
+            }px`;
+          }, this.renewalInterval);
+        }
+      }
+
+      let house = new House(300, 100, "img/home.jpg", 1500);
+
+      let dog = new Dog(300, 300, "img/dog.avif", 1000);
+
+      let bird = new Bird(500, 300, "img/bird.jpg", 2000);
+
+      house.scale();
+
+      dog.shift();
+
+      bird.fly();
+    </script>
+  </body>
+</html>
