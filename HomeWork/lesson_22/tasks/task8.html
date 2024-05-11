@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 8</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Задача 8</h1>
+    <p>
+      Визначити скільки пройшло секунд після заходу на сайт перш ніж користувач
+      зробив рух мишкою.
+    </p>
+
+    <script>
+      window.onload = function () {
+        let initialEnter = Date.now();
+        let initiation = false;
+
+        function getTimeBeforeMove() {
+          if (!initiation) {
+            let movingTime = Date.now();
+            let timeBeforeMove = (movingTime - initialEnter) / 1000;
+            let result = document.createElement("div");
+            result.innerText = `Пройшло ${Math.round(
+              timeBeforeMove
+            )} секунд після заходу на сайт перш ніж користувач зробив рух мишкою`;
+            document.body.append(result);
+
+            initiation = true;
+          }
+        }
+        window.addEventListener("mousemove", getTimeBeforeMove);
+      };
+    </script>
+  </body>
+</html>

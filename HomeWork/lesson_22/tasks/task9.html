@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 9</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Задача 9</h1>
+    <p>
+      Користувачка планувала оформила дектретну відпустку на 200 днів (дата
+      початку відпустки вводиться). Визначити чи відпустка вже триває і чи не
+      закінчилась.
+    </p>
+
+    <script>
+      let dateOfLeaving = {
+        day: 1,
+        month: 5,
+        year: 2023
+      };
+
+      function isMaternityLeaveOver(dateOfLeaving) {
+        let leaveBeginning = new Date(
+          Date.UTC(
+            dateOfLeaving.year,
+            dateOfLeaving.month - 1,
+            dateOfLeaving.day
+          )
+        );
+
+        let now = Date.now();
+        if (now < leaveBeginning)
+          throw new Error("Неможна вводити дату у майбутньому");
+        else {
+          let result;
+          if (now - 200 * 24 * 60 * 60 * 1000 <= leaveBeginning)
+            result = "Відпустка ще триває";
+          else result = "Відпустка вже завершилася";
+          return result;
+        }
+      }
+
+      document.write(isMaternityLeaveOver(dateOfLeaving));
+    </script>
+  </body>
+</html>

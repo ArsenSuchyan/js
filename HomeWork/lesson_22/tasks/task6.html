@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 6</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Задача 6</h1>
+    <p>Вивести скільки зараз годин у Лондоні, Парижі, Сіднеї.</p>
+
+    <script>
+      let optionsForLondon = {
+        timeZone: "Europe/London"
+      };
+      let optionsForParis = {
+        timeZone: "Europe/Paris"
+      };
+      let optionsForSydney = {
+        timeZone: "Australia/Sydney"
+      };
+      let optionsForLA = {
+        timeZone: "America/Los_Angeles"
+      };
+
+      function showLocaleTime(city, options) {
+        let date = new Date();
+        let localeTimeString = date.toLocaleString("uk-UK", options);
+        let localeTime = new Date(localeTimeString);
+        let localeTimeHours = localeTime.getHours();
+        return `В місті ${city} зараз ${localeTimeHours} година <br><br>`;
+      }
+
+      document.write(showLocaleTime("Лондон", optionsForLondon));
+      document.write(showLocaleTime("Париж", optionsForParis));
+      document.write(showLocaleTime("Сідней", optionsForSydney));
+      document.write(showLocaleTime("Лос-Анджелес", optionsForLA));
+    </script>
+  </body>
+</html>
