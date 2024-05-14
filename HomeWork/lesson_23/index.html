@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ДЗ №23</title>
+    <script></script>
+  </head>
+  <body>
+    <h1>ДЗ №23</h1>
+
+    <script>
+      // Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати метод test та регулярні вирази).
+
+      // let arr = ["1abg", "ytgb", "123", "3hjb", "nom", "ser"];
+      // let pattern = /\d/;
+      // let result = arr.filter((el) => pattern.test(el));
+      // console.log(result);
+
+      // Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.
+
+      // let arr = [
+      //   "1abg",
+      //   "ytgb",
+      //   "123",
+      //   "3hjb",
+      //   "nom",
+      //   "ser",
+      //   "1nnun2kl7",
+      //   "nomad"
+      // ];
+      // let pattern = /\d/;
+      // let result = arr.filter((el) => !pattern.test(el));
+      // console.log(result);
+
+      // Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.
+
+      // let arr = ["1слон", "Назар", "123", "3бвр", "крч", "молоко", "Юзр"];
+      // let pattern = /[аеиіїоОуюя]/i;
+      // let result = arr.filter((el) => pattern.test(el));
+      // console.log(result);
+
+      // Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер.
+
+      // let arr = ["1слон", "Назар", "123", "3бвр", "крч", "молоко", "Юзр"];
+      // let pattern = /[аеиіїоуюя]/i;
+      // let result = arr.filter((el) => !pattern.test(el));
+      // console.log(result);
+
+      // Задача 5. Дано масив рядків. Вивести ті, у яких є або цифра 1 або цифра 3.
+
+      // let arr = [
+      //   "1слон",
+      //   "Назар",
+      //   "123",
+      //   "3бвр",
+      //   "крч",
+      //   "молоко",
+      //   "485",
+      //   "222"
+      // ];
+      // let pattern = /[13]/;
+      // let result = arr.filter((el) => pattern.test(el));
+      // console.log(result);
+
+      // Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.
+
+      // let str = "5 котів, 3 собаки, 5 корів дали 10 літрів молока.";
+      // let pattern = /\d/g;
+      // let result = str.match(pattern);
+      // document.write(result);
+      // console.log(result);
+
+      // Задача 7. Дано рядок тексту. Знайти усі знаки пунктуації, які були використано.
+
+      // let str = "5 котів, 3 собаки, 5 корів дали: 10 літрів молока.";
+      // let pattern = /[,\.:]/g;
+      // let result = str.match(pattern);
+      // document.write(result);
+      // console.log(result);
+
+      // Задача 8. Дано рядок тексту. Вивести усі складові, які розділені розділовими знаками.
+
+      // let str =
+      //   "5 котів, 3 собаки, 5 корів дали: 10 літрів молока. Як справи? Сьогодні прекрасний день! 5,4,3,2,1";
+      // let pattern = /(?<=(^|[,\.:\?!]))(.*?)(?=($|[,\.:\?!]))/g;
+      // let result = str.match(pattern);
+      // document.write(result);
+      // console.log(result);
+
+      // Задача 9. Дано рядок тексту. Перевірити, чи містить він дату у форматі dd.mm.yyyy (dd- день, mm- місяць, yyyy- рік).
+
+      // let str = "Моя дата народження 01.01.2000";
+      // let pattern = /(^|\D)\d{2}\.\d{2}\.\d{4}(\D|$)/g;
+      // if (pattern.test(str)) document.write("Так, містить");
+      // else document.write("Ні, не містить");
+
+      // Задача 10. Дано рядок тексту. Підрахувати кількість двоцифрових чисел у рядку.
+
+      // let str = "Моя дата народження 01.01.2000, 735, 22, 2f2, 30";
+      // let pattern = /(?<=^|\D)(\d{2}?)(?=($|\D))/g;
+      // let result = str.match(pattern);
+      // document.write(`У тексті ${result.length} двоцифрових чисел`);
+      // console.log(result);
+
+      // Задача 11. Визначити чи може бути рядок тексту номером банківської картки (приклад: «4142-3433-2323-3434»). Знайти усі такі номери.
+
+      // let str =
+      //   "Номери карток клієнтів: 4142-3433-2323-3434, 5237-7645-2231-1165, 4441-1144-6754-2345";
+      // let pattern = /(?<=^|\D)(\d{4}-\d{4}-\d{4}-\d{4}?)(?=($|\D))/g;
+      // let consistCardNumber = pattern.test(str);
+      // console.log(consistCardNumber);
+      // let result = str.match(pattern);
+      // console.log(result);
+
+      // Задача 12. Дано адресу сайту. Визначити, чи є він урядовим (містить домен “gov”)
+
+      // let link = "https://mvs.gov.ua/";
+      // let link2 = "https://regex101.com/r/oKarBP/1";
+      // let pattern = /.gov/;
+      // let isGovernmental = pattern.test(link);
+      // let isGovernmental2 = pattern.test(link2);
+      // console.log(isGovernmental);
+      // console.log(isGovernmental2);
+
+      // Задача 13. Вибрати усі роки після 2021 року з отриманого повідомлення
+
+      // let message =
+      //   "На склад отримано автівки наступних років випуску: 2019, 2021, 2023, 2015, 2022";
+      // let pattern = /(?<=^|\D)(20[2-9][2-9]?)(?=($|\D))/g;
+      // let result = message.match(pattern);
+      // console.log(result);
+      // document.write(result);
+
+      // Задача 14. Дано номер телефону. Перевірити, чи є цей телефон телефоном з України (починаєтсья на «+38»)
+
+      // let phoneNumber = "+380664598543";
+      // let pattern = /(^|\s)\+38\d{10}($|\s)/;
+      // let isUkrainianNumber = pattern.test(phoneNumber);
+      // console.log(isUkrainianNumber);
+
+      // Задача 15. Користувач вводить прізвище та ім’я в одному рядку через пробіл.  Замінити пробіл на дефіс.
+
+      // let userFullName = prompt(
+      //   "Введіть свої і'мя, прізвище та побатькові через пробіл"
+      // );
+      // let transformedUserName = userFullName.replace(/\s/g, "-");
+      // document.write(transformedUserName);
+
+      // Задача 16. Користувач вводить дату у форматі «день.місяць.рік». Отримати рядкове представлення дати у форматі «день/місяць/рік»
+
+      // let date = prompt("Вводіть дату у форматі «день.місяць.рік»");
+      // let transformedDate = date.replace(/\./g, "/");
+      // document.write(transformedDate);
+
+      // Задача 17. Користувач вводить день (номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи  є це день вихідним
+
+      // let day = prompt("Введіть день тижня");
+      // let pattern = /([06]|sun|sat)/;
+      // if (pattern.test(day)) alert("Вихідний");
+      // else alert("Не вихідний");
+    </script>
+  </body>
+</html>
