@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 7</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Задача 7</h1>
+    <p>
+      Дано інформацію про відвідувачів деякого сайту (для кожного відвідувача
+      зберігається логін). Підрахувати для кожного клієнта кількість
+      відвідувань.
+    </p>
+
+    <script>
+      const visitors = [
+        "user123",
+        "user456",
+        "user789",
+        "user123",
+        "user789",
+        "user456",
+        "user789",
+        "user123",
+        "user456",
+        "user789",
+        "user101",
+        "user456",
+        "user101",
+        "user404",
+        "user456"
+      ];
+
+      let map = new Map();
+      for (let visitor of visitors) {
+        let visitsCount = map.get(visitor) ?? 0;
+        map.set(visitor, ++visitsCount);
+      }
+
+      map.forEach((value, key) =>
+        document.write(`${key} = ${value} відвідувань <br>`)
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 12</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Задача 12</h1>
+    <p>
+      Зберігати у пам’яті список справ, які користувачу треба виконати
+      (зберігати у localStorage). Періодично випадковим чином вибирати якусь з
+      справ і виводити користувачу (з використанням confirm). Якщо користувач
+      натискає на «Ок», то видаляти цю задачу.
+    </p>
+
+    <script>
+      const chores = [
+        "Прибрати кімнату",
+        "Помити посуд",
+        "Приготувати обід",
+        "Випрати білизну",
+        "Випорати полиці",
+        "Полити квіти"
+      ];
+      class ChoresManager {
+        constructor(chores = []) {
+          this.chores = chores;
+          this.setChoresList();
+          this.initiate();
+        }
+
+        setChoresList() {
+          localStorage.clear();
+          localStorage.setItem("chore", JSON.stringify(this.chores));
+          console.log();
+        }
+        showRandomChore() {
+          if (this.chores.length > 0) {
+            let randomNumber = Math.floor(Math.random() * this.chores.length);
+
+            let randomChore = JSON.parse(localStorage.getItem("chore"))[
+              randomNumber
+            ];
+            if (confirm(randomChore)) {
+              this.chores.splice(randomNumber, 1);
+              console.log(this.chores);
+              this.setChoresList();
+            }
+          } else clearInterval(this.initiation);
+        }
+        initiate() {
+          this.initiation = setInterval(this.showRandomChore.bind(this), 3000);
+        }
+      }
+
+      let choresManager = new ChoresManager(chores);
+    </script>
+  </body>
+</html>

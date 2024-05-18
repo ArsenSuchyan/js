@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 8</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Задача 8</h1>
+    <p>
+      Дано масив студентів (піб, курс, факультет). Підрахувати кількість різних
+      факультетів, та кількість студентів кожного з курсів.
+    </p>
+
+    <script>
+      const students = [
+        { fullName: "Іваненко Іван Іванович", course: 2, faculty: "Економіка" },
+        {
+          fullName: "Петренко Олена Василівна",
+          course: 1,
+          faculty: "Філологія"
+        },
+        {
+          fullName: "Сидоренко Андрій Миколайович",
+          course: 3,
+          faculty: "Інформатика"
+        },
+        {
+          fullName: "Коваленко Олександр Сергійович",
+          course: 1,
+          faculty: "Економіка"
+        },
+        {
+          fullName: "Бондаренко Марія Віталіївна",
+          course: 1,
+          faculty: "Філологія"
+        },
+        {
+          fullName: "Гриценко Дмитро Олександрович",
+          course: 3,
+          faculty: "Інформатика"
+        },
+        {
+          fullName: "Іваненко Ірина Олександрівна",
+          course: 2,
+          faculty: "Економіка"
+        },
+        {
+          fullName: "Мельник Олексій Михайлович",
+          course: 1,
+          faculty: "Філологія"
+        },
+        {
+          fullName: "Семененко Юлія Володимирівна",
+          course: 3,
+          faculty: "Інформатика"
+        },
+        {
+          fullName: "Петренко Олександр Вікторович",
+          course: 2,
+          faculty: "Економіка"
+        },
+        { fullName: "Шевченко Анна Ігорівна", course: 1, faculty: "Філологія" },
+        {
+          fullName: "Коваленко Ігор Володимирович",
+          course: 3,
+          faculty: "Інформатика"
+        },
+        {
+          fullName: "Сидоренко Олена Сергіївна",
+          course: 2,
+          faculty: "Економіка"
+        },
+        {
+          fullName: "Іванов Олександр Ігорович",
+          course: 1,
+          faculty: "Філологія"
+        },
+        {
+          fullName: "Петрова Катерина Олександрівна",
+          course: 3,
+          faculty: "Інформатика"
+        }
+      ];
+
+      let map = new Map();
+      for (let student of students) {
+        let studentsNumber = map.get(student.course) ?? 0;
+        map.set(student.course, ++studentsNumber);
+      }
+
+      map.forEach((value, key) =>
+        document.write(`${key} курс: ${value} студентів <br>`)
+      );
+
+      let faculties = students.map((el) => el.faculty);
+
+      let set = new Set(faculties);
+      console.log(set);
+      document.write(`Кількість різних факультетів: ${set.size}`);
+    </script>
+  </body>
+</html>

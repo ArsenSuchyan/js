@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 6</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Задача 6</h1>
+    <p>
+      Дано масив книг (назва, рік видання, автор, ціна). Підрахувати загальну
+      вартість книг для кожного із авторів.
+    </p>
+
+    <script>
+      const books = [
+        {
+          title: "The Great Gatsby",
+          year: 1925,
+          author: "F. Scott Fitzgerald",
+          price: 16
+        },
+        {
+          title: "To Kill a Mockingbird",
+          year: 1960,
+          author: "Harper Lee",
+          price: 12
+        },
+        { title: "1984", year: 1949, author: "George Orwell", price: 11 },
+        {
+          title: "Pride and Prejudice",
+          year: 1813,
+          author: "Jane Austen",
+          price: 10
+        },
+        {
+          title: "The Catcher in the Rye",
+          year: 1951,
+          author: "J.D. Salinger",
+          price: 11
+        },
+        {
+          title: "To Kill a Mockingbird",
+          year: 1960,
+          author: "Harper Lee",
+          price: 12
+        },
+        {
+          title: "The Great Gatsby",
+          year: 1925,
+          author: "F. Scott Fitzgerald",
+          price: 16
+        },
+        {
+          title: "Animal Farm",
+          year: 1945,
+          author: "George Orwell",
+          price: 9
+        },
+        { title: "Emma", year: 1815, author: "Jane Austen", price: 10 },
+        {
+          title: "Nineteen Eighty-Four",
+          year: 1949,
+          author: "George Orwell",
+          price: 11
+        }
+      ];
+
+      let map = new Map();
+      for (let book of books) {
+        let totalPrice = map.get(book.author) ?? 0;
+        map.set(book.author, totalPrice + book.price);
+      }
+
+      map.forEach((value, key) => document.write(`${key} = ${value}$ <br>`));
+    </script>
+  </body>
+</html>

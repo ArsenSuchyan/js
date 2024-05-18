@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 10</title>
+    <style></style>
+  </head>
+  <body>
+    <h1>Задача 10</h1>
+    <p>
+      Дано два списки прізвищ студентів, що відвідують гуртки з математики і
+      історії. Підрахувати скільки студентів з гуртка з історії також відвідують
+      гурток з математики. Також підрахувати скільки всього студентів відвідують
+      хоча б один гурток.
+    </p>
+
+    <script>
+      const mathClubStudents = [
+        "Петрова",
+        "Коваленко",
+        "Мельник",
+        "Павлова",
+        "Іванова",
+        "Семенов",
+        "Ковалев",
+        "Сидорова"
+      ];
+
+      const historyClubStudents = [
+        "Іванова",
+        "Сидорова",
+        "Коваленко",
+        "Григоренко",
+        "Марченко",
+        "Петрова"
+      ];
+
+      let commonStudentsList = [...mathClubStudents, ...historyClubStudents];
+
+      let set = new Set(commonStudentsList);
+
+      document.write(
+        `Всього студентів відвідують хоча б один гурток: ${set.size} <br>`
+      );
+
+      let bothClubsMembers = 0;
+      for (let historyClubStudent of historyClubStudents) {
+        for (let mathClubStudent of mathClubStudents) {
+          if (historyClubStudent === mathClubStudent) {
+            bothClubsMembers++;
+            break;
+          }
+        }
+      }
+
+      document.write(
+        `${bothClubsMembers} студентів з гуртка з історії також відвідують гурток з математики`
+      );
+    </script>
+  </body>
+</html>
