@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+    <style>
+      #dogImage {
+        aspect-ratio: 1/1;
+        height: 300px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Задача 4</h1>
+    <p>
+      Використовуючи один з АРІ та функцію fetch організувати завантаження та
+      відображення даних
+    </p>
+
+    <div id="loading">Loading...</div>
+    <div>
+      <img src="" id="dogImage" />
+    </div>
+    <script>
+      fetch("https://random.dog/woof.json")
+        .then((data) => {
+          console.log(data);
+          return data.json();
+        })
+        .then((data) => {
+          console.log(data);
+          dogImage.src = data.url;
+        })
+        .finally(() => {
+          loading.style.display = "none";
+          dogImage.style.display = "block";
+        });
+    </script>
+  </body>
+</html>
